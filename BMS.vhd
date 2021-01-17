@@ -73,6 +73,9 @@ ATTRIBUTE ENUM_ENCODING OF state: TYPE IS "000 001 010 100 101";
 signal compteur : STD_LOGIC_VECTOR(2 downto 0):="000"; 
 signal newcommand : STD_LOGIC := '0'; --permet de détecter le changement d'état et de remettre le compteur à zéro pour fermer les switchs dans le bon ordre 
 
+-- signal qui permet de ne pas changer d'état pendant que l'on effectue la configuration RESET
+signal busy : STD_LOGIC := '0';
+
 begin
 
 -- Premier process : prescaler pour créer une clock à 0.5 ms (CLK à 20µs)
@@ -129,26 +132,26 @@ if (CLK_bis='1' and CLK_bis'Event)then
 		newcommand<='1';
 		
 --
-	elsif (command=OUVERT and LOAD='1' and MODE_0='0' and MODE_1='0') then
+	elsif (command=OUVERT and LOAD='1' and MODE_0='0' and MODE_1='0' and busy='0') then
 		command<=PARALLEL; 
 		newcommand<='1';
 		
 		
 --
-	elsif (command=OUVERT and LOAD='1' and MODE_0='1' and MODE_1='1') then
+	elsif (command=OUVERT and LOAD='1' and MODE_0='1' and MODE_1='1' and busy='0') then
 		command<=SERIES; 
 		newcommand<='1';
 		
 	
-	elsif (command=OUVERT and LOAD='1' and MODE_0='1' and MODE_1='0') then 
+	elsif (command=OUVERT and LOAD='1' and MODE_0='1' and MODE_1='0' and busy='0') then 
 		command<=BATT1; 
 		newcommand<='1';
 		
-	elsif (command=OUVERT and LOAD='1' and MODE_0='0' and MODE_1='1') then
+	elsif (command=OUVERT and LOAD='1' and MODE_0='0' and MODE_1='1' and busy='0') then
 		command<=BATT2;
 		newcommand<='1';
 	
-	elsif(compteur = "000" ) then
+	elsif(compteur = "000") then --si la mise à jour de la commande est plus rapide que celle du compteur (car les deux process synchrones sur deux clocks )
 		newcommand<='0'; 
 	
 	else 
@@ -163,14 +166,23 @@ end process Config_mode ;
 
 Config_switch : process(CLK_ter)
 begin
---
+
+if (command=OUVERT and compteur/="111") then 
+	busy<='1'; -- on ne peut pas changer de configuration tant que les interrupteurs ne sont pas tous ouverts
+else 
+	null; 
+end if;
+
+
+
+
 if (CLK_ter='1' and CLK_ter'Event)then
 
 	if (newcommand='1') then 
 		compteur <= "000"; 
 		ACK<='0';
 	else
-
+	
 		case command is 
 			when OUVERT => IF (compteur="000") THEN 
 									K1<='0'; 
@@ -189,6 +201,7 @@ if (CLK_ter='1' and CLK_ter'Event)then
 									K2<='0';
 									ACK<='1'; 
 									compteur<="111"; -- valeur du compteur quand attente du nouvelle commande, permet de faire les configs qu'une seule fois 
+									busy<='0';
 							ELSE 
 									ACK<='0';
 								
@@ -222,7 +235,7 @@ if (CLK_ter='1' and CLK_ter'Event)then
 							ELSIF (compteur="010") THEN
 								K5<='1'; 
 								compteur<="111";
-								
+								ACK<='1';
 							ELSE 
 								ACK<='0';
 							END IF; 
@@ -233,7 +246,7 @@ if (CLK_ter='1' and CLK_ter'Event)then
 							ELSIF (compteur="01") THEN
 								K1<='1'; 
 								compteur<="111";
-							
+								ACK<='1';
 							ELSE 
 								ACK<='0'; 
 								
@@ -245,7 +258,7 @@ if (CLK_ter='1' and CLK_ter'Event)then
 							ELSIF (compteur="01") THEN
 								K1<='1'; 
 								compteur<="111"; 
-								
+								ACK<='1';
 							ELSE 
 							ACK<='0';
 							

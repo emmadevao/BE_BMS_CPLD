@@ -116,8 +116,8 @@ BEGIN
 -- Simulation n° 2 : Mode PARALLEL puis RESET OKAY
 		--RESET<= '1' after 0ms,'0' after 0.25 ms, '1' after 8ms , '0' after 8.5ms ; 
 		--MODE_0<='0' after 4 ms;--, '1' after 10ms; 
-		---MODE_1<='0' after 4 ms ;--, '1' after 10ms ; 
-		---LOAD<='1' after  4.5 ms,'0' after  5.5ms ;--, '1' after 8.5ms ;
+		--MODE_1<='0' after 4 ms ;--, '1' after 10ms ; 
+		--LOAD<='1' after  4.5 ms,'0' after  5.5ms ;--, '1' after 8.5ms ;
 		
 -- Simulation n° 3 : Mode PARALLEL puis RESET puis SERIES 
 		--RESET<= '1' after 0ms,'0' after 0.25 ms, '1' after 8ms , '0' after 8.5ms ; 
@@ -126,16 +126,22 @@ BEGIN
 		--LOAD<='1' after  4.5 ms,'0' after  5.5ms , '1' after 13ms , '0' after 14ms ;
 		
 -- Simulation n° 4 : Mode PARALLEL puis RESET puis BATT1
-		RESET<= '1' after 0ms,'0' after 0.25 ms, '1' after 8ms , '0' after 8.5ms ; 
-		MODE_0<='0' after 4 ms , '1' after 11ms , '0' after 15 ms; 
-		MODE_1<='0' after 4 ms , '0' after 11ms, '0' after 15 ms; 
-		LOAD<='1' after  4.5 ms,'0' after  5.5ms , '1' after 13ms , '0' after 14ms ;	
+		--RESET<= '1' after 0ms,'0' after 0.25 ms, '1' after 8ms , '0' after 8.5ms ; 
+		--MODE_0<='0' after 4 ms , '1' after 11ms , '0' after 15 ms; 
+		--MODE_1<='0' after 4 ms , '0' after 11ms, '0' after 15 ms; 
+		--LOAD<='1' after  4.5 ms,'0' after  5.5ms , '1' after 13ms , '0' after 14ms ;	
 
 -- Simulation n° 5 : Mode PARALLEL puis RESET puis BATT2
 		--RESET<= '1' after 0ms,'0' after 0.25 ms, '1' after 8ms , '0' after 8.5ms ; 
 		--MODE_0<='0' after 4 ms , '0' after 11ms , '0' after 15 ms; 
 		--MODE_1<='0' after 4 ms , '1' after 11ms, '0' after 15 ms; 
 		--LOAD<='1' after  4.5 ms,'0' after  5.5ms , '1' after 13ms , '0' after 14ms ;
+		
+-- Simulation n° 6 : Test que l'on reste en RESET tant que la configuration n'est pas terminée
+		RESET<= '1' after 0ms,'0' after 0.25 ms ;
+		MODE_0<='0' after 5 ms ;--, '0' after 11ms ;
+		MODE_1<='0' after 5 ms ;--, '1' after 11ms ; 
+		LOAD<='1' after  0.45 ms,'0' after  0.65 ms ;
 		
       wait;
    end process;
