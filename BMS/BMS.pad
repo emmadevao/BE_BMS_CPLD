@@ -1,7 +1,7 @@
 Release 8.1i - Fit O.87xd
 Copyright(c) 1995-2003 Xilinx Inc. All rights reserved
 
- 1-15-2021  3:00PM
+ 1-17-2021  2:33PM
 
 NOTE: This file is designed to be imported into a spreadsheet program
 such as Microsoft Excel for viewing, printing and sorting. The pipe '|'
@@ -23,7 +23,7 @@ P2|TIE||I/O||||||||||
 P3|TIE||I/O||||||||||
 P4|GND||GND||||||||||
 P5|CLK|I|I/O|INPUT|||||||||
-P6|K3|O|I/O|OUTPUT|||||||||
+P6|K4|O|I/O|OUTPUT|||||||||
 P7|TIE||I/O||||||||||
 P8|TIE||I/O||||||||||
 P9|TDI||TDI||||||||||
@@ -49,7 +49,7 @@ P28|LOAD|I|I/O|INPUT|||||||||
 P29|K2|O|I/O|OUTPUT|||||||||
 P30|TIE||I/O||||||||||
 P31|TIE||I/O||||||||||
-P32|K4|O|I/O|OUTPUT|||||||||
+P32|K3|O|I/O|OUTPUT|||||||||
 P33|TIE||I/O/GSR||||||||||
 P34|TIE||I/O/GTS2||||||||||
 P35|VCC||VCCINT||||||||||

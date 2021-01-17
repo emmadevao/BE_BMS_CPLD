@@ -104,16 +104,29 @@ Performing bidirectional port resolution...
 
 Synthesizing Unit <BMS>.
     Related source file is "/home/devaud/Bureau/BMS_5ESPE/BMS.vhd".
-    Register <K4> equivalent to <K2> has been removed
 INFO:Xst:1799 - State batt1 is never reached in FSM <command>.
 INFO:Xst:1799 - State batt2 is never reached in FSM <command>.
-    Found finite state machine <FSM_0> for signal <command>.
+    Found finite state machine <FSM_0> for signal <compteur>.
+    -----------------------------------------------------------------------
+    | States             | 5                                              |
+    | Transitions        | 25                                             |
+    | Inputs             | 5                                              |
+    | Outputs            | 4                                              |
+    | Clock              | CLK_ter                   (rising_edge)        |
+    | Reset              | newcommand                (positive)           |
+    | Reset type         | synchronous                                    |
+    | Reset State        | 000                                            |
+    | Power Up State     | 000                                            |
+    | Encoding           | automatic                                      |
+    | Implementation     | automatic                                      |
+    -----------------------------------------------------------------------
+    Found finite state machine <FSM_1> for signal <command>.
     -----------------------------------------------------------------------
     | States             | 3                                              |
     | Transitions        | 7                                              |
     | Inputs             | 3                                              |
     | Outputs            | 3                                              |
-    | Clock              | CLK_ter                   (rising_edge)        |
+    | Clock              | CLK_bis                   (rising_edge)        |
     | Reset              | RESET                     (positive)           |
     | Reset type         | synchronous                                    |
     | Reset State        | ouvert                                         |
@@ -121,23 +134,20 @@ INFO:Xst:1799 - State batt2 is never reached in FSM <command>.
     | Encoding           | automatic                                      |
     | Implementation     | automatic                                      |
     -----------------------------------------------------------------------
-    Found 4x1-bit ROM for signal <ACK$mux0006>.
     Found 1-bit register for signal <K1>.
     Found 1-bit register for signal <K2>.
     Found 1-bit register for signal <K3>.
+    Found 1-bit register for signal <K4>.
     Found 1-bit register for signal <ACK>.
     Found 1-bit register for signal <CLK_bis>.
     Found 1-bit register for signal <CLK_ter>.
-    Found 2-bit register for signal <compteur>.
-    Found 2-bit adder for signal <compteur$addsub0000> created at line 174.
-    Found 6-bit up counter for signal <Qdiv>.
-    Found 4-bit up counter for signal <Qdiv2>.
+    Found 1-bit register for signal <newcommand>.
+    Found 5-bit up counter for signal <Qdiv>.
+    Found 2-bit up counter for signal <Qdiv2>.
     Summary:
-	inferred   1 Finite State Machine(s).
-	inferred   1 ROM(s).
+	inferred   2 Finite State Machine(s).
 	inferred   2 Counter(s).
-	inferred   4 D-type flip-flop(s).
-	inferred   1 Adder/Subtractor(s).
+	inferred   5 D-type flip-flop(s).
 Unit <BMS> synthesized.
 
 
@@ -145,16 +155,11 @@ Unit <BMS> synthesized.
 HDL Synthesis Report
 
 Macro Statistics
-# ROMs                                                 : 1
- 4x1-bit ROM                                           : 1
-# Adders/Subtractors                                   : 1
- 2-bit adder                                           : 1
 # Counters                                             : 2
- 4-bit up counter                                      : 1
- 6-bit up counter                                      : 1
-# Registers                                            : 7
- 1-bit register                                        : 6
- 2-bit register                                        : 1
+ 2-bit up counter                                      : 1
+ 5-bit up counter                                      : 1
+# Registers                                            : 8
+ 1-bit register                                        : 8
 
 =========================================================================
 
@@ -162,7 +167,7 @@ Macro Statistics
 *                       Advanced HDL Synthesis                          *
 =========================================================================
 
-Analyzing FSM <FSM_0> for best encoding.
+Analyzing FSM <FSM_1> for best encoding.
 Optimizing FSM <command/FSM> on signal <command[1:2]> with sequential encoding.
 ----------------------
  State    | Encoding
@@ -173,21 +178,28 @@ Optimizing FSM <command/FSM> on signal <command[1:2]> with sequential encoding.
  batt1    | unreached
  batt2    | unreached
 ----------------------
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <compteur/FSM> on signal <compteur[1:5]> with one-hot encoding.
+-------------------
+ State | Encoding
+-------------------
+ 000   | 00001
+ 001   | 00010
+ 010   | 00100
+ 011   | 01000
+ 111   | 10000
+-------------------
 
 =========================================================================
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# FSMs                                                 : 1
-# ROMs                                                 : 1
- 4x1-bit ROM                                           : 1
-# Adders/Subtractors                                   : 1
- 2-bit adder                                           : 1
+# FSMs                                                 : 2
 # Counters                                             : 2
- 4-bit up counter                                      : 1
- 6-bit up counter                                      : 1
-# Registers                                            : 4
- Flip-Flops                                            : 4
+ 2-bit up counter                                      : 1
+ 5-bit up counter                                      : 1
+# Registers                                            : 5
+ Flip-Flops                                            : 5
 
 =========================================================================
 
@@ -196,26 +208,27 @@ Macro Statistics
 =========================================================================
 
 Optimizing unit <BMS> ...
-  implementation constraint: INIT=r	 : K1
-  implementation constraint: INIT=r	 : K2
   implementation constraint: INIT=r	 : command_FSM_FFd1
+  implementation constraint: INIT=r	 : K2
   implementation constraint: INIT=r	 : K3
-  implementation constraint: INIT=r	 : compteur_1
-  implementation constraint: INIT=r	 : command_FSM_FFd2
+  implementation constraint: INIT=r	 : compteur_FSM_FFd3
+  implementation constraint: INIT=r	 : K4
   implementation constraint: INIT=r	 : ACK
+  implementation constraint: INIT=s	 : compteur_FSM_FFd5
   implementation constraint: INIT=r	 : CLK_ter
+  implementation constraint: INIT=r	 : newcommand
+  implementation constraint: INIT=r	 : compteur_FSM_FFd4
   implementation constraint: INIT=r	 : CLK_bis
-  implementation constraint: INIT=r	 : compteur_0
-  implementation constraint: INIT=r	 : Qdiv2_3
-  implementation constraint: INIT=r	 : Qdiv2_0
   implementation constraint: INIT=r	 : Qdiv2_1
-  implementation constraint: INIT=r	 : Qdiv2_2
-  implementation constraint: INIT=r	 : Qdiv_5
+  implementation constraint: INIT=r	 : compteur_FSM_FFd2
+  implementation constraint: INIT=r	 : Qdiv2_0
+  implementation constraint: INIT=r	 : Qdiv_4
+  implementation constraint: INIT=r	 : command_FSM_FFd2
   implementation constraint: INIT=r	 : Qdiv_0
   implementation constraint: INIT=r	 : Qdiv_1
   implementation constraint: INIT=r	 : Qdiv_2
   implementation constraint: INIT=r	 : Qdiv_3
-  implementation constraint: INIT=r	 : Qdiv_4
+  implementation constraint: INIT=r	 : K1
 
 =========================================================================
 *                           Partition Report                            *
@@ -247,17 +260,18 @@ Design Statistics
 # IOs                              : 11
 
 Cell Usage :
-# BELS                             : 107
-#      AND2                        : 38
-#      AND3                        : 4
+# BELS                             : 108
+#      AND2                        : 41
+#      AND3                        : 3
 #      AND4                        : 1
 #      GND                         : 1
 #      INV                         : 36
-#      OR2                         : 15
-#      OR3                         : 2
-#      XOR2                        : 10
-# FlipFlops/Latches                : 20
-#      FD                          : 20
+#      OR2                         : 18
+#      OR3                         : 3
+#      XOR2                        : 5
+# FlipFlops/Latches                : 21
+#      FD                          : 15
+#      FDCE                        : 6
 # IO Buffers                       : 11
 #      IBUF                        : 5
 #      OBUF                        : 6
@@ -265,12 +279,12 @@ Cell Usage :
 
 
 Total REAL time to Xst completion: 3.00 secs
-Total CPU time to Xst completion: 2.76 secs
+Total CPU time to Xst completion: 2.96 secs
  
 --> 
 
 
-Total memory usage is 522916 kilobytes
+Total memory usage is 528180 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    0 (   0 filtered)

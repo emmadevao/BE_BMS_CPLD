@@ -14,7 +14,7 @@
          </top_modules>
       </db_ref>
    </db_ref_list>
-   <WVObjectSize size="16" />
+   <WVObjectSize size="14" />
    <wvobject fp_name="/testcpt/clk" type="logic" db_ref_id="1">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -63,20 +63,12 @@
       <obj_property name="ElementShortName">clk_period</obj_property>
       <obj_property name="ObjectShortName">clk_period</obj_property>
    </wvobject>
-   <wvobject fp_name="/testcpt/uut/clk_bis" type="logic" db_ref_id="1">
-      <obj_property name="ElementShortName">clk_bis</obj_property>
-      <obj_property name="ObjectShortName">clk_bis</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testcpt/uut/clk_ter" type="logic" db_ref_id="1">
-      <obj_property name="ElementShortName">clk_ter</obj_property>
-      <obj_property name="ObjectShortName">clk_ter</obj_property>
-   </wvobject>
    <wvobject fp_name="/testcpt/uut/command" type="other" db_ref_id="1">
       <obj_property name="ElementShortName">command</obj_property>
       <obj_property name="ObjectShortName">command</obj_property>
    </wvobject>
    <wvobject fp_name="/testcpt/uut/compteur" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">compteur[1:0]</obj_property>
-      <obj_property name="ObjectShortName">compteur[1:0]</obj_property>
+      <obj_property name="ElementShortName">compteur[2:0]</obj_property>
+      <obj_property name="ObjectShortName">compteur[2:0]</obj_property>
    </wvobject>
 </wave_config>

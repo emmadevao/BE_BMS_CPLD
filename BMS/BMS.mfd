@@ -1,10 +1,22 @@
 MDF Database:  version 1.0
 MDF_INFO | BMS | XC9572XL-5-VQ44
-MACROCELL | 1 | 7 | K4_OBUF
+MACROCELL | 1 | 1 | K2_OBUF
 ATTRIBUTES | 4588322 | 0
-OUTPUTMC | 2 | 1 | 7 | 1 | 1
+OUTPUTMC | 1 | 1 | 1
+INPUTS | 5 | K2  | command_FSM_FFd2  | compteur<1>  | compteur<0>  | CLK_bis
+INPUTMC | 5 | 1 | 1 | 1 | 16 | 1 | 14 | 1 | 15 | 0 | 14
+EQ | 5 | 
+   K2.T = K2 & !command_FSM_FFd2 & compteur<1> & 
+	compteur<0>
+	# !K2 & command_FSM_FFd2 & !compteur<1> & 
+	!compteur<0>;
+   K2.CLK = CLK_bis;
+
+MACROCELL | 2 | 4 | K4_OBUF
+ATTRIBUTES | 4588322 | 0
+OUTPUTMC | 1 | 2 | 4
 INPUTS | 5 | K4  | command_FSM_FFd2  | compteur<1>  | compteur<0>  | CLK_bis
-INPUTMC | 5 | 1 | 7 | 2 | 15 | 2 | 14 | 2 | 17 | 3 | 15
+INPUTMC | 5 | 2 | 4 | 1 | 16 | 1 | 14 | 1 | 15 | 0 | 14
 EQ | 5 | 
    K4.T = K4 & !command_FSM_FFd2 & compteur<1> & 
 	compteur<0>
@@ -12,11 +24,25 @@ EQ | 5 |
 	!compteur<0>;
    K4.CLK = CLK_bis;
 
+MACROCELL | 0 | 7 | ACK_OBUF
+ATTRIBUTES | 4588322 | 0
+OUTPUTMC | 1 | 0 | 7
+INPUTS | 6 | ACK  | command_FSM_FFd2  | compteur<1>  | compteur<0>  | command_FSM_FFd1  | CLK_bis
+INPUTMC | 6 | 0 | 7 | 1 | 16 | 1 | 14 | 1 | 15 | 1 | 17 | 0 | 14
+EQ | 7 | 
+   ACK.T = !ACK & command_FSM_FFd2 & !compteur<1> & 
+	compteur<0>
+	# ACK & !command_FSM_FFd2 & !compteur<1> & 
+	!compteur<0> & !command_FSM_FFd1
+	# !ACK & !command_FSM_FFd2 & compteur<1> & 
+	compteur<0> & !command_FSM_FFd1;
+   ACK.CLK = CLK_bis;
+
 MACROCELL | 3 | 1 | K1_OBUF
 ATTRIBUTES | 4588322 | 0
 OUTPUTMC | 1 | 3 | 1
 INPUTS | 6 | K1  | command_FSM_FFd2  | compteur<1>  | compteur<0>  | command_FSM_FFd1  | CLK_bis
-INPUTMC | 6 | 3 | 1 | 2 | 15 | 2 | 14 | 2 | 17 | 2 | 16 | 3 | 15
+INPUTMC | 6 | 3 | 1 | 1 | 16 | 1 | 14 | 1 | 15 | 1 | 17 | 0 | 14
 EQ | 7 | 
    K1.T = !K1 & command_FSM_FFd2 & !compteur<1> & 
 	compteur<0>
@@ -26,11 +52,11 @@ EQ | 7 |
 	!compteur<0> & !command_FSM_FFd1;
    K1.CLK = CLK_bis;
 
-MACROCELL | 2 | 4 | K3_OBUF
+MACROCELL | 1 | 7 | K3_OBUF
 ATTRIBUTES | 4588322 | 0
-OUTPUTMC | 1 | 2 | 4
+OUTPUTMC | 1 | 1 | 7
 INPUTS | 6 | K3  | compteur<1>  | compteur<0>  | command_FSM_FFd1  | command_FSM_FFd2  | CLK_bis
-INPUTMC | 6 | 2 | 4 | 2 | 14 | 2 | 17 | 2 | 16 | 2 | 15 | 3 | 15
+INPUTMC | 6 | 1 | 7 | 1 | 14 | 1 | 15 | 1 | 17 | 1 | 16 | 0 | 14
 EQ | 5 | 
    K3.T = K3 & !command_FSM_FFd2 & compteur<1> & 
 	!compteur<0>
@@ -38,11 +64,11 @@ EQ | 5 |
 	command_FSM_FFd1;
    K3.CLK = CLK_bis;
 
-MACROCELL | 2 | 15 | command_FSM_FFd2
+MACROCELL | 1 | 16 | command_FSM_FFd2
 ATTRIBUTES | 8520480 | 0
-OUTPUTMC | 9 | 1 | 7 | 3 | 1 | 2 | 4 | 2 | 15 | 2 | 14 | 2 | 17 | 2 | 16 | 0 | 7 | 1 | 1
+OUTPUTMC | 9 | 1 | 1 | 2 | 4 | 0 | 7 | 3 | 1 | 1 | 7 | 1 | 16 | 1 | 14 | 1 | 15 | 1 | 17
 INPUTS | 7 | RESET  | command_FSM_FFd2  | LOAD  | MODE_1  | MODE_0  | command_FSM_FFd1  | CLK_ter
-INPUTMC | 3 | 2 | 15 | 2 | 16 | 0 | 15
+INPUTMC | 3 | 1 | 16 | 1 | 17 | 3 | 14
 INPUTP | 4 | 20 | 83 | 21 | 24
 EQ | 4 | 
    command_FSM_FFd2.D = !RESET & command_FSM_FFd2
@@ -50,35 +76,33 @@ EQ | 4 |
 	!command_FSM_FFd1;
    command_FSM_FFd2.CLK = CLK_ter;
 
-MACROCELL | 2 | 14 | compteur<1>
-ATTRIBUTES | 4326176 | 0
-OUTPUTMC | 7 | 1 | 7 | 3 | 1 | 2 | 4 | 2 | 14 | 2 | 17 | 0 | 7 | 1 | 1
-INPUTS | 5 | compteur<1>  | compteur<0>  | command_FSM_FFd1  | command_FSM_FFd2  | CLK_bis
-INPUTMC | 5 | 2 | 14 | 2 | 17 | 2 | 16 | 2 | 15 | 3 | 15
+MACROCELL | 1 | 14 | compteur<1>
+ATTRIBUTES | 8520480 | 0
+OUTPUTMC | 7 | 1 | 1 | 2 | 4 | 0 | 7 | 3 | 1 | 1 | 7 | 1 | 14 | 1 | 15
+INPUTS | 5 | compteur<1>  | compteur<0>  | command_FSM_FFd2  | command_FSM_FFd1  | CLK_bis
+INPUTMC | 5 | 1 | 14 | 1 | 15 | 1 | 16 | 1 | 17 | 0 | 14
 EQ | 4 | 
-   compteur<1>.T = !command_FSM_FFd2 & compteur<0> & 
-	!command_FSM_FFd1
-	# !compteur<1> & compteur<0> & command_FSM_FFd1;
+   !compteur<1>.D = !compteur<1> & !compteur<0>
+	# !command_FSM_FFd2 & compteur<1> & compteur<0> & 
+	!command_FSM_FFd1;
    compteur<1>.CLK = CLK_bis;
 
-MACROCELL | 2 | 17 | compteur<0>
-ATTRIBUTES | 8520480 | 0
-OUTPUTMC | 7 | 1 | 7 | 3 | 1 | 2 | 4 | 2 | 14 | 2 | 17 | 0 | 7 | 1 | 1
-INPUTS | 5 | command_FSM_FFd2  | compteur<1>  | compteur<0>  | command_FSM_FFd1  | CLK_bis
-INPUTMC | 5 | 2 | 15 | 2 | 14 | 2 | 17 | 2 | 16 | 3 | 15
-EQ | 6 | 
-   !compteur<0>.D = !command_FSM_FFd2 & !compteur<1> & compteur<0>
-	# !command_FSM_FFd2 & compteur<0> & 
+MACROCELL | 1 | 15 | compteur<0>
+ATTRIBUTES | 4326176 | 0
+OUTPUTMC | 7 | 1 | 1 | 2 | 4 | 0 | 7 | 3 | 1 | 1 | 7 | 1 | 14 | 1 | 15
+INPUTS | 5 | command_FSM_FFd2  | compteur<1>  | command_FSM_FFd1  | compteur<0>  | CLK_bis
+INPUTMC | 5 | 1 | 16 | 1 | 14 | 1 | 17 | 1 | 15 | 0 | 14
+EQ | 4 | 
+   !compteur<0>.T = command_FSM_FFd2 & compteur<1> & 
 	!command_FSM_FFd1
-	# command_FSM_FFd2 & compteur<1> & !compteur<0> & 
-	!command_FSM_FFd1;
+	# compteur<1> & compteur<0> & command_FSM_FFd1;
    compteur<0>.CLK = CLK_bis;
 
-MACROCELL | 2 | 16 | command_FSM_FFd1
+MACROCELL | 1 | 17 | command_FSM_FFd1
 ATTRIBUTES | 8520480 | 0
-OUTPUTMC | 7 | 3 | 1 | 2 | 4 | 2 | 15 | 2 | 14 | 2 | 17 | 2 | 16 | 0 | 7
+OUTPUTMC | 7 | 0 | 7 | 3 | 1 | 1 | 7 | 1 | 16 | 1 | 14 | 1 | 15 | 1 | 17
 INPUTS | 7 | RESET  | command_FSM_FFd1  | LOAD  | MODE_1  | MODE_0  | command_FSM_FFd2  | CLK_ter
-INPUTMC | 3 | 2 | 16 | 2 | 15 | 0 | 15
+INPUTMC | 3 | 1 | 17 | 1 | 16 | 3 | 14
 INPUTP | 4 | 20 | 83 | 21 | 24
 EQ | 4 | 
    command_FSM_FFd1.D = !RESET & command_FSM_FFd1
@@ -86,153 +110,149 @@ EQ | 4 |
 	!command_FSM_FFd2;
    command_FSM_FFd1.CLK = CLK_ter;
 
-MACROCELL | 3 | 15 | CLK_bis
+MACROCELL | 0 | 14 | CLK_bis
 ATTRIBUTES | 8520480 | 0
-OUTPUTMC | 7 | 1 | 7 | 3 | 1 | 2 | 4 | 2 | 14 | 2 | 17 | 0 | 7 | 1 | 1
+OUTPUTMC | 7 | 1 | 1 | 2 | 4 | 0 | 7 | 3 | 1 | 1 | 7 | 1 | 14 | 1 | 15
 INPUTS | 7 | Qdiv<0>  | Qdiv<1>  | Qdiv<2>  | Qdiv<3>  | Qdiv<4>  | Qdiv<5>  | CLK
-INPUTMC | 6 | 2 | 10 | 3 | 17 | 3 | 14 | 3 | 13 | 3 | 12 | 3 | 16
+INPUTMC | 6 | 0 | 13 | 0 | 17 | 0 | 12 | 0 | 11 | 0 | 16 | 0 | 15
 INPUTP | 1 | 29
 EQ | 3 | 
-   CLK_bis.D = Qdiv<0> & !Qdiv<1> & !Qdiv<2> & !Qdiv<3> & 
-	!Qdiv<4> & Qdiv<5>;
+   CLK_bis.D = !Qdiv<0> & Qdiv<1> & !Qdiv<2> & !Qdiv<3> & 
+	Qdiv<4> & Qdiv<5>;
    CLK_bis.CLK = CLK;
 
-MACROCELL | 2 | 11 | Qdiv2<0>
+MACROCELL | 1 | 13 | Qdiv2<0>
 ATTRIBUTES | 4326176 | 0
-OUTPUTMC | 4 | 2 | 12 | 0 | 17 | 0 | 15 | 0 | 16
+OUTPUTMC | 5 | 3 | 17 | 3 | 13 | 3 | 16 | 3 | 14 | 3 | 15
 INPUTS | 1 | CLK
 INPUTP | 1 | 29
 EQ | 2 | 
    Qdiv2<0>.T = Vcc;
    Qdiv2<0>.CLK = CLK;
 
-MACROCELL | 2 | 10 | Qdiv<0>
+MACROCELL | 0 | 13 | Qdiv<0>
 ATTRIBUTES | 4326176 | 0
-OUTPUTMC | 6 | 3 | 15 | 3 | 17 | 3 | 14 | 3 | 13 | 3 | 12 | 3 | 16
-INPUTS | 1 | CLK
-INPUTP | 1 | 29
-EQ | 2 | 
-   Qdiv<0>.T = Vcc;
-   Qdiv<0>.CLK = CLK;
-
-MACROCELL | 2 | 12 | Qdiv2<1>
-ATTRIBUTES | 4326176 | 0
-OUTPUTMC | 3 | 0 | 17 | 0 | 15 | 0 | 16
-INPUTS | 2 | Qdiv2<0>  | CLK
-INPUTMC | 1 | 2 | 11
-INPUTP | 1 | 29
-EQ | 2 | 
-   Qdiv2<1>.T = Qdiv2<0>;
-   Qdiv2<1>.CLK = CLK;
-
-MACROCELL | 0 | 17 | Qdiv2<2>
-ATTRIBUTES | 4326176 | 0
-OUTPUTMC | 3 | 0 | 17 | 0 | 15 | 0 | 16
-INPUTS | 5 | Qdiv2<0>  | Qdiv2<1>  | Qdiv2<3>  | Qdiv2<2>  | CLK
-INPUTMC | 4 | 2 | 11 | 2 | 12 | 0 | 16 | 0 | 17
+OUTPUTMC | 7 | 0 | 14 | 0 | 13 | 0 | 17 | 0 | 12 | 0 | 11 | 0 | 16 | 0 | 15
+INPUTS | 7 | Qdiv<0>  | Qdiv<1>  | Qdiv<2>  | Qdiv<3>  | Qdiv<4>  | Qdiv<5>  | CLK
+INPUTMC | 6 | 0 | 13 | 0 | 17 | 0 | 12 | 0 | 11 | 0 | 16 | 0 | 15
 INPUTP | 1 | 29
 EQ | 3 | 
-   Qdiv2<2>.T = Qdiv2<0> & Qdiv2<1> & Qdiv2<2>
-	# Qdiv2<0> & Qdiv2<1> & !Qdiv2<3>;
+   !Qdiv<0>.T = !Qdiv<0> & Qdiv<1> & !Qdiv<2> & !Qdiv<3> & 
+	Qdiv<4> & Qdiv<5>;
+   Qdiv<0>.CLK = CLK;
+
+MACROCELL | 3 | 17 | Qdiv2<1>
+ATTRIBUTES | 4326176 | 0
+OUTPUTMC | 5 | 3 | 17 | 3 | 13 | 3 | 16 | 3 | 14 | 3 | 15
+INPUTS | 6 | Qdiv2<0>  | Qdiv2<1>  | Qdiv2<2>  | Qdiv2<3>  | Qdiv2<4>  | CLK
+INPUTMC | 5 | 1 | 13 | 3 | 17 | 3 | 13 | 3 | 16 | 3 | 15
+INPUTP | 1 | 29
+EQ | 3 | 
+   !Qdiv2<1>.T = !Qdiv2<0>
+	# !Qdiv2<1> & !Qdiv2<2> & Qdiv2<3> & Qdiv2<4>;
+   Qdiv2<1>.CLK = CLK;
+
+MACROCELL | 3 | 13 | Qdiv2<2>
+ATTRIBUTES | 4326176 | 0
+OUTPUTMC | 4 | 3 | 17 | 3 | 16 | 3 | 14 | 3 | 15
+INPUTS | 3 | Qdiv2<0>  | Qdiv2<1>  | CLK
+INPUTMC | 2 | 1 | 13 | 3 | 17
+INPUTP | 1 | 29
+EQ | 2 | 
+   Qdiv2<2>.T = Qdiv2<0> & Qdiv2<1>;
    Qdiv2<2>.CLK = CLK;
 
-MACROCELL | 3 | 17 | Qdiv<1>
+MACROCELL | 3 | 16 | Qdiv2<3>
 ATTRIBUTES | 4326176 | 0
-OUTPUTMC | 6 | 3 | 15 | 3 | 17 | 3 | 14 | 3 | 13 | 3 | 12 | 3 | 16
-INPUTS | 7 | Qdiv<0>  | Qdiv<1>  | Qdiv<2>  | Qdiv<3>  | Qdiv<4>  | Qdiv<5>  | CLK
-INPUTMC | 6 | 2 | 10 | 3 | 17 | 3 | 14 | 3 | 13 | 3 | 12 | 3 | 16
+OUTPUTMC | 4 | 3 | 17 | 3 | 16 | 3 | 14 | 3 | 15
+INPUTS | 6 | Qdiv2<0>  | Qdiv2<1>  | Qdiv2<2>  | Qdiv2<3>  | Qdiv2<4>  | CLK
+INPUTMC | 5 | 1 | 13 | 3 | 17 | 3 | 13 | 3 | 16 | 3 | 15
 INPUTP | 1 | 29
 EQ | 4 | 
-   !Qdiv<1>.T = !Qdiv<0>
-	# !Qdiv<1> & !Qdiv<2> & !Qdiv<3> & !Qdiv<4> & 
+   Qdiv2<3>.T = Qdiv2<0> & Qdiv2<1> & Qdiv2<2>
+	# Qdiv2<0> & !Qdiv2<1> & !Qdiv2<2> & Qdiv2<3> & 
+	Qdiv2<4>;
+   Qdiv2<3>.CLK = CLK;
+
+MACROCELL | 0 | 17 | Qdiv<1>
+ATTRIBUTES | 4326176 | 0
+OUTPUTMC | 7 | 0 | 14 | 0 | 13 | 0 | 17 | 0 | 12 | 0 | 11 | 0 | 16 | 0 | 15
+INPUTS | 7 | Qdiv<0>  | Qdiv<1>  | Qdiv<2>  | Qdiv<3>  | Qdiv<4>  | Qdiv<5>  | CLK
+INPUTMC | 6 | 0 | 13 | 0 | 17 | 0 | 12 | 0 | 11 | 0 | 16 | 0 | 15
+INPUTP | 1 | 29
+EQ | 4 | 
+   Qdiv<1>.T = Qdiv<0>
+	# Qdiv<1> & !Qdiv<2> & !Qdiv<3> & Qdiv<4> & 
 	Qdiv<5>;
    Qdiv<1>.CLK = CLK;
 
-MACROCELL | 3 | 14 | Qdiv<2>
+MACROCELL | 0 | 12 | Qdiv<2>
 ATTRIBUTES | 4326176 | 0
-OUTPUTMC | 5 | 3 | 15 | 3 | 17 | 3 | 13 | 3 | 12 | 3 | 16
+OUTPUTMC | 6 | 0 | 14 | 0 | 13 | 0 | 17 | 0 | 11 | 0 | 16 | 0 | 15
 INPUTS | 3 | Qdiv<0>  | Qdiv<1>  | CLK
-INPUTMC | 2 | 2 | 10 | 3 | 17
+INPUTMC | 2 | 0 | 13 | 0 | 17
 INPUTP | 1 | 29
 EQ | 2 | 
    Qdiv<2>.T = Qdiv<0> & Qdiv<1>;
    Qdiv<2>.CLK = CLK;
 
-MACROCELL | 3 | 13 | Qdiv<3>
+MACROCELL | 0 | 11 | Qdiv<3>
 ATTRIBUTES | 4326176 | 0
-OUTPUTMC | 4 | 3 | 15 | 3 | 17 | 3 | 12 | 3 | 16
+OUTPUTMC | 5 | 0 | 14 | 0 | 13 | 0 | 17 | 0 | 16 | 0 | 15
 INPUTS | 4 | Qdiv<0>  | Qdiv<1>  | Qdiv<2>  | CLK
-INPUTMC | 3 | 2 | 10 | 3 | 17 | 3 | 14
+INPUTMC | 3 | 0 | 13 | 0 | 17 | 0 | 12
 INPUTP | 1 | 29
 EQ | 2 | 
    Qdiv<3>.T = Qdiv<0> & Qdiv<1> & Qdiv<2>;
    Qdiv<3>.CLK = CLK;
 
-MACROCELL | 3 | 12 | Qdiv<4>
+MACROCELL | 0 | 16 | Qdiv<4>
 ATTRIBUTES | 4326176 | 0
-OUTPUTMC | 3 | 3 | 15 | 3 | 17 | 3 | 16
-INPUTS | 5 | Qdiv<0>  | Qdiv<1>  | Qdiv<2>  | Qdiv<3>  | CLK
-INPUTMC | 4 | 2 | 10 | 3 | 17 | 3 | 14 | 3 | 13
+OUTPUTMC | 5 | 0 | 14 | 0 | 13 | 0 | 17 | 0 | 16 | 0 | 15
+INPUTS | 7 | Qdiv<0>  | Qdiv<1>  | Qdiv<2>  | Qdiv<3>  | Qdiv<4>  | Qdiv<5>  | CLK
+INPUTMC | 6 | 0 | 13 | 0 | 17 | 0 | 12 | 0 | 11 | 0 | 16 | 0 | 15
 INPUTP | 1 | 29
-EQ | 2 | 
-   Qdiv<4>.T = Qdiv<0> & Qdiv<1> & Qdiv<2> & Qdiv<3>;
+EQ | 4 | 
+   Qdiv<4>.T = Qdiv<0> & Qdiv<1> & Qdiv<2> & Qdiv<3>
+	# !Qdiv<0> & Qdiv<1> & !Qdiv<2> & !Qdiv<3> & 
+	Qdiv<4> & Qdiv<5>;
    Qdiv<4>.CLK = CLK;
 
-MACROCELL | 0 | 15 | CLK_ter
+MACROCELL | 3 | 14 | CLK_ter
 ATTRIBUTES | 8520480 | 0
-OUTPUTMC | 2 | 2 | 15 | 2 | 16
-INPUTS | 5 | Qdiv2<0>  | Qdiv2<1>  | Qdiv2<2>  | Qdiv2<3>  | CLK
-INPUTMC | 4 | 2 | 11 | 2 | 12 | 0 | 17 | 0 | 16
-INPUTP | 1 | 29
-EQ | 2 | 
-   CLK_ter.D = Qdiv2<0> & Qdiv2<1> & !Qdiv2<2> & Qdiv2<3>;
-   CLK_ter.CLK = CLK;
-
-MACROCELL | 0 | 16 | Qdiv2<3>
-ATTRIBUTES | 4326176 | 0
-OUTPUTMC | 3 | 0 | 17 | 0 | 15 | 0 | 16
-INPUTS | 5 | Qdiv2<0>  | Qdiv2<1>  | Qdiv2<2>  | Qdiv2<3>  | CLK
-INPUTMC | 4 | 2 | 11 | 2 | 12 | 0 | 17 | 0 | 16
+OUTPUTMC | 2 | 1 | 16 | 1 | 17
+INPUTS | 6 | Qdiv2<0>  | Qdiv2<1>  | Qdiv2<2>  | Qdiv2<3>  | Qdiv2<4>  | CLK
+INPUTMC | 5 | 1 | 13 | 3 | 17 | 3 | 13 | 3 | 16 | 3 | 15
 INPUTP | 1 | 29
 EQ | 3 | 
-   Qdiv2<3>.T = Qdiv2<0> & Qdiv2<1> & Qdiv2<2>
-	# Qdiv2<0> & Qdiv2<1> & Qdiv2<3>;
-   Qdiv2<3>.CLK = CLK;
+   CLK_ter.D = Qdiv2<0> & !Qdiv2<1> & !Qdiv2<2> & Qdiv2<3> & 
+	Qdiv2<4>;
+   CLK_ter.CLK = CLK;
 
-MACROCELL | 3 | 16 | Qdiv<5>
+MACROCELL | 3 | 15 | Qdiv2<4>
 ATTRIBUTES | 4326176 | 0
-OUTPUTMC | 3 | 3 | 15 | 3 | 17 | 3 | 16
+OUTPUTMC | 4 | 3 | 17 | 3 | 16 | 3 | 14 | 3 | 15
+INPUTS | 6 | Qdiv2<0>  | Qdiv2<1>  | Qdiv2<2>  | Qdiv2<3>  | Qdiv2<4>  | CLK
+INPUTMC | 5 | 1 | 13 | 3 | 17 | 3 | 13 | 3 | 16 | 3 | 15
+INPUTP | 1 | 29
+EQ | 4 | 
+   Qdiv2<4>.T = Qdiv2<0> & Qdiv2<1> & Qdiv2<2> & Qdiv2<3>
+	# Qdiv2<0> & !Qdiv2<1> & !Qdiv2<2> & Qdiv2<3> & 
+	Qdiv2<4>;
+   Qdiv2<4>.CLK = CLK;
+
+MACROCELL | 0 | 15 | Qdiv<5>
+ATTRIBUTES | 4326176 | 0
+OUTPUTMC | 5 | 0 | 14 | 0 | 13 | 0 | 17 | 0 | 16 | 0 | 15
 INPUTS | 7 | Qdiv<0>  | Qdiv<1>  | Qdiv<2>  | Qdiv<3>  | Qdiv<4>  | Qdiv<5>  | CLK
-INPUTMC | 6 | 2 | 10 | 3 | 17 | 3 | 14 | 3 | 13 | 3 | 12 | 3 | 16
+INPUTMC | 6 | 0 | 13 | 0 | 17 | 0 | 12 | 0 | 11 | 0 | 16 | 0 | 15
 INPUTP | 1 | 29
 EQ | 5 | 
    Qdiv<5>.T = Qdiv<0> & Qdiv<1> & Qdiv<2> & Qdiv<3> & 
 	Qdiv<4>
-	# Qdiv<0> & !Qdiv<1> & !Qdiv<2> & !Qdiv<3> & 
-	!Qdiv<4> & Qdiv<5>;
+	# !Qdiv<0> & Qdiv<1> & !Qdiv<2> & !Qdiv<3> & 
+	Qdiv<4> & Qdiv<5>;
    Qdiv<5>.CLK = CLK;
-
-MACROCELL | 0 | 7 | ACK_OBUF
-ATTRIBUTES | 8651554 | 0
-INPUTS | 5 | command_FSM_FFd2  | compteur<0>  | command_FSM_FFd1  | compteur<1>  | CLK_bis
-INPUTMC | 5 | 2 | 15 | 2 | 17 | 2 | 16 | 2 | 14 | 3 | 15
-EQ | 5 | 
-   ACK.D = command_FSM_FFd2 & !compteur<1> & compteur<0>
-	# command_FSM_FFd2 & compteur<0> & 
-	command_FSM_FFd1
-	# !command_FSM_FFd2 & compteur<1> & compteur<0>;
-   ACK.CLK = CLK_bis;
-
-MACROCELL | 1 | 1 | K4_OBUF$BUF0
-ATTRIBUTES | 8651554 | 0
-INPUTS | 5 | K4  | command_FSM_FFd2  | compteur<0>  | compteur<1>  | CLK_bis
-INPUTMC | 5 | 1 | 7 | 2 | 15 | 2 | 17 | 2 | 14 | 3 | 15
-EQ | 5 | 
-   K2.D = K4 & command_FSM_FFd2
-	# K4 & !compteur<1>
-	# K4 & !compteur<0>
-	# command_FSM_FFd2 & !compteur<1> & !compteur<0>;
-   K2.CLK = CLK_bis;
 
 MACROCELL | 2 | 13 | K5_OBUF
 ATTRIBUTES | 264962 | 0
@@ -240,14 +260,14 @@ INPUTS | 0
 EQ | 1 | 
    K5 = Gnd;
 
-PIN | LOAD | 64 | 0 | N/A | 83 | 2 | 2 | 15 | 2 | 16
-PIN | MODE_1 | 64 | 0 | N/A | 21 | 2 | 2 | 15 | 2 | 16
-PIN | MODE_0 | 64 | 0 | N/A | 24 | 2 | 2 | 15 | 2 | 16
-PIN | RESET | 64 | 0 | N/A | 20 | 2 | 2 | 15 | 2 | 16
-PIN | CLK | 64 | 0 | N/A | 29 | 12 | 3 | 15 | 2 | 11 | 2 | 10 | 2 | 12 | 0 | 17 | 3 | 17 | 3 | 14 | 3 | 13 | 3 | 12 | 0 | 15 | 0 | 16 | 3 | 16
-PIN | K4 | 536871040 | 0 | N/A | 90
-PIN | K1 | 536871040 | 0 | N/A | 62
-PIN | K3 | 536871040 | 0 | N/A | 31
-PIN | ACK | 536871040 | 0 | N/A | 15
+PIN | LOAD | 64 | 0 | N/A | 83 | 2 | 1 | 16 | 1 | 17
+PIN | MODE_1 | 64 | 0 | N/A | 21 | 2 | 1 | 16 | 1 | 17
+PIN | MODE_0 | 64 | 0 | N/A | 24 | 2 | 1 | 16 | 1 | 17
+PIN | RESET | 64 | 0 | N/A | 20 | 2 | 1 | 16 | 1 | 17
+PIN | CLK | 64 | 0 | N/A | 29 | 13 | 0 | 14 | 1 | 13 | 0 | 13 | 3 | 17 | 3 | 13 | 3 | 16 | 0 | 17 | 0 | 12 | 0 | 11 | 0 | 16 | 3 | 14 | 3 | 15 | 0 | 15
 PIN | K2 | 536871040 | 0 | N/A | 87
+PIN | K4 | 536871040 | 0 | N/A | 31
+PIN | ACK | 536871040 | 0 | N/A | 15
+PIN | K1 | 536871040 | 0 | N/A | 62
+PIN | K3 | 536871040 | 0 | N/A | 90
 PIN | K5 | 536871040 | 0 | N/A | 49

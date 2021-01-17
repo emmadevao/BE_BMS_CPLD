@@ -55,31 +55,36 @@ architecture StateMachine of BMS is
 
 -- Signaux pour le prescaler 
 signal CLK_bis : STD_LOGIC := '0';
-signal CLK_ter : STD_LOGIC :='0' ;
-signal Qdiv : STD_LOGIC_VECTOR ( 5 downto 0):="000000";
-signal Qdiv2 : STD_LOGIC_VECTOR ( 3 downto 0):="0000";
+signal CLK_ter : STD_LOGIC := '0';
+signal Qdiv : STD_LOGIC_VECTOR ( 4 downto 0):="00000";
+signal Qdiv2 : STD_LOGIC_VECTOR ( 1 downto 0):="00";
 
 
 -- la description des états 
 
-type state is (OUVERT, PARALLEL, SERIES, BATT1, BATT2);
+type state is (OUVERT, PARALLEL, SERIES, BATT1, BATT2); 
 signal command : state ; 
+--/!\ ligne suivante indispensable car sinon mise en danger de l'intégrité du bloc BMS
+-- permet de fixer l'état initial
+ATTRIBUTE ENUM_ENCODING : STRING;
+ATTRIBUTE ENUM_ENCODING OF state: TYPE IS "000 001 010 100 101";
 
 -- compteur pour le délais de 1ms 
-signal compteur : STD_LOGIC_VECTOR(1 downto 0):="00"; 
+signal compteur : STD_LOGIC_VECTOR(2 downto 0):="000"; 
+signal newcommand : STD_LOGIC := '0'; --permet de détecter le changement d'état et de remettre le compteur à zéro pour fermer les switchs dans le bon ordre 
 
 begin
 
--- Premier process : prescaler pour créer une clock à 1kHz
+-- Premier process : prescaler pour créer une clock à 0.5 ms (CLK à 20µs)
 process(CLK)
 begin 
 
 if (CLK='1' and CLK'Event)then 
 
 
-	if Qdiv="100001"then  
+	if Qdiv="11001"then  
 		CLK_bis<='1';
-		Qdiv<="000000";
+		Qdiv<="00000";
 		
 	else 
 		Qdiv <=Qdiv+1;
@@ -89,16 +94,16 @@ end if;
 
 end process; 
 
--- Deuxième process : prescaler pour créer une clock à 3kHz
-process(CLK)
+-- Deuxième process : prescaler pour créer une clock à 1ms (% de la première)
+process(CLK_bis)
 begin 
 
-if (CLK='1' and CLK'Event)then 
+if (CLK_bis='1' and CLK_bis'Event)then 
 
 
-	if Qdiv2="1011"then  
+	if Qdiv2="01"then  
 		CLK_ter<='1';
-		Qdiv2<="0000";
+		Qdiv2<="00";
 		
 	else 
 		Qdiv2 <=Qdiv2+1;
@@ -111,90 +116,115 @@ end process;
 -- Machine à état de la configuaration des interrupteurs 
 -- Synchrone avec la nouvelle clock CLK_ter
 
-Config_mode : process(CLK_ter)
+Config_mode : process(CLK_bis)
 
 begin
 --
 
 
-if (CLK_ter='1' and CLK_ter'Event)then
+if (CLK_bis='1' and CLK_bis'Event)then
 --
 	if(RESET='1')then
 		command<= OUVERT ; 
+		newcommand<='1';
 		
 --
 	elsif (command=OUVERT and LOAD='1' and MODE_0='0' and MODE_1='0') then
 		command<=PARALLEL; 
+		newcommand<='1';
 		
 		
 --
 	elsif (command=OUVERT and LOAD='1' and MODE_0='1' and MODE_1='1') then
 		command<=SERIES; 
-		--ACK<='0';
---		
---	elsif (command=OPEN and LOAD='1' and MODE_0='0' and MODE_1='1') then 
---		command<=BATT1; 
---		
---	elsif (command=OPEN and LOAD='1' and MODE_0='1' and MODE_1='0') then
---		command<=BATT2;
---		
+		newcommand<='1';
+		
+	
+	elsif (command=OUVERT and LOAD='1' and MODE_0='1' and MODE_1='0') then 
+		command<=BATT1; 
+		newcommand<='1';
+		
+	elsif (command=OUVERT and LOAD='1' and MODE_0='0' and MODE_1='1') then
+		command<=BATT2;
+		newcommand<='1';
+	
+	elsif(compteur = "000" ) then
+		newcommand<='0'; 
+	
 	else 
-	NULL ; 
+		NULL ;
+	 
+
 	
 	end if ;
 	
 end if; 
 end process Config_mode ;
 
-Config_switch : process(CLK_bis)
-
+Config_switch : process(CLK_ter)
 begin
 --
-if (CLK_bis='1' and CLK_bis'Event)then
+if (CLK_ter='1' and CLK_ter'Event)then
 
---ACK<='0';
---compteur<="00";
-	case command is 
-		when OUVERT => IF (compteur="00") THEN 
-								K1<='0'; 
-								ACK<='0';
+	if (newcommand='1') then 
+		compteur <= "000"; 
+		ACK<='0';
+	else
+
+		case command is 
+			when OUVERT => IF (compteur="000") THEN 
+									K1<='0'; 
+									compteur<=compteur+1;
 									
-							ELSIF (compteur="01") THEN
-								K5<='0'; 
-									
-							ELSIF (compteur="10") THEN
-								K3<='0'; 
-									
-							ELSE
-								K4<='0'; 
-								K2<='0';
-								ACK<='1'; 
+							ELSIF (compteur="001") THEN
+									K5<='0'; 
+									compteur<=compteur+1;
+								
+							ELSIF (compteur="010") THEN
+									K3<='0'; 
+									compteur<=compteur+1;
+								
+							ELSIF (compteur="011") THEN
+									K4<='0'; 
+									K2<='0';
+									ACK<='1'; 
+									compteur<="111"; -- valeur du compteur quand attente du nouvelle commande, permet de faire les configs qu'une seule fois 
+							ELSE 
+									ACK<='0';
+								
 							END IF; 
 							
-							compteur<=compteur+1;
 							
-		when PARALLEL =>IF (compteur="00" AND ACK='0') THEN 
+							
+		when PARALLEL =>IF (compteur="000") THEN 
 								K2<='1';
 								K4<='1';								
-								compteur<=compteur+1; 
-							ELSIF (compteur="01" ) THEN
+								compteur<=compteur+1;
+								
+							ELSIF (compteur="001" ) THEN
 								K1<='1'; 
 								ACK<='1';
-								compteur<=compteur+1;  
+								compteur<="111";  
+								
+							ELSE 
+								ACK<='0'; 
+								
 							END IF;
 							  
-		when SERIES=>	IF (compteur="00") THEN 
+		when SERIES=>	IF (compteur="000") THEN 
 								K3<='1'; 
 								compteur<=compteur+1; 
-							ELSIF (compteur="01") THEN
-								K1<='0'; 
-								compteur<=compteur+1; 
-							ELSIF (compteur="10") THEN
-								K3<='0'; 
-								compteur<=compteur+1; 
+								
+							ELSIF (compteur="001") THEN
+								K1<='1'; 
+								compteur<=compteur+1;
+								
+							ELSIF (compteur="010") THEN
+								K5<='1'; 
+								compteur<="111";
+								
 							ELSE 
-								K4<='0'; 
-								K2<='0';
+								ACK<='0';
 							END IF; 
 							  
 		when BATT1 => 	IF (compteur="00") THEN 
@@ -202,7 +232,11 @@ if (CLK_bis='1' and CLK_bis'Event)then
 								compteur<=compteur+1; 
 							ELSIF (compteur="01") THEN
 								K1<='1'; 
-								compteur<=compteur+1; 
+								compteur<="111";
+							
+							ELSE 
+								ACK<='0'; 
+								
 							END IF;
 							  
 		when BATT2 => 	IF (compteur="00") THEN 
@@ -210,13 +244,20 @@ if (CLK_bis='1' and CLK_bis'Event)then
 								compteur<=compteur+1; 
 							ELSIF (compteur="01") THEN
 								K1<='1'; 
-								compteur<=compteur+1; 
+								compteur<="111"; 
+								
+							ELSE 
+							ACK<='0';
+							
 							END IF;
 		
--- regarder si il faut mettre un cas défaut 
+-- toujours mettre le cas par défaut 
+	when others => NULL; 
 
 	end case; 
-end if; 
+end if; -- celui du newcommand
+
+end if; -- celui du clock event
 end process Config_switch ;
 
 	

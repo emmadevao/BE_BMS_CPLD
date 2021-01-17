@@ -3,7 +3,7 @@
  
 cpldfit:  version O.87xd                            Xilinx Inc.
                                   Fitter Report
-Design Name: BMS                                 Date:  1-15-2021,  3:00PM
+Design Name: BMS                                 Date:  1-17-2021,  2:33PM
 Device Used: XC9572XL-5-VQ44
 Fitting Status: Successful
 
@@ -11,18 +11,18 @@ Fitting Status: Successful
 
 Macrocells     Product Terms    Function Block   Registers      Pins           
 Used/Tot       Used/Tot         Inps Used/Tot    Used/Tot       Used/Tot       
-22 /72  ( 31%) 58  /360  ( 16%) 41 /216 ( 19%)   21 /72  ( 29%) 11 /34  ( 32%)
+23 /72  ( 32%) 60  /360  ( 17%) 43 /216 ( 20%)   22 /72  ( 31%) 11 /34  ( 32%)
 
 ** Function Block Resources **
 
 Function    Mcells      FB Inps     Pterms      IO          
 Block       Used/Tot    Used/Tot    Used/Tot    Used/Tot    
-FB1           4/18       10/54       12/90       4/ 9
-FB2           2/18        5/54        8/90       2/ 9
-FB3           9/18       13/54       20/90       3/ 9
-FB4           7/18       13/54       18/90       2/ 7
+FB1           8/18       13/54       21/90       4/ 9
+FB2           7/18       13/54       19/90       2/ 9
+FB3           2/18        5/54        3/90       3/ 9
+FB4           6/18       12/54       17/90       2/ 7
              -----       -----       -----      -----    
-             22/72       41/216      58/360     11/34 
+             23/72       43/216      60/360     11/34 
 
 * - Resource is exhausted
 
@@ -47,7 +47,7 @@ GSR           :    0           0    |
 
 ** Power Data **
 
-There are 22 macrocells in high performance mode (MCHP).
+There are 23 macrocells in high performance mode (MCHP).
 There are 0 macrocells in low power mode (MCLP).
 End of Mapped Resource Summary
 **************************  Errors and Warnings  ***************************
@@ -84,33 +84,34 @@ WARNING:Cpld:1239 - The global clock designation (BUFG) on signal 'MODE_0_IBUF'
 
 Signal              Total Total Loc     Pin  Pin     Pin     Pwr  Slew Reg Init
 Name                Pts   Inps          No.  Type    Use     Mode Rate State
-ACK                 4     5     FB1_8   42   I/O     O       STD  FAST RESET
-K2                  5     5     FB2_2   29   I/O     O       STD  FAST RESET
-K4                  3     5     FB2_8   32   I/O     O       STD  FAST RESET
-K3                  3     6     FB3_5   6    I/O     O       STD  FAST RESET
+ACK                 4     6     FB1_8   42   I/O     O       STD  FAST RESET
+K2                  3     5     FB2_2   29   I/O     O       STD  FAST RESET
+K3                  3     6     FB2_8   32   I/O     O       STD  FAST RESET
+K4                  3     5     FB3_5   6    I/O     O       STD  FAST RESET
 K5                  0     0     FB3_14  13   I/O     O       STD  FAST 
 K1                  4     6     FB4_2   19   I/O     O       STD  FAST RESET
 
-** 16 Buried Nodes **
+** 17 Buried Nodes **
 
 Signal              Total Total Loc     Pwr  Reg Init
 Name                Pts   Inps          Mode State
-CLK_ter             2     5     FB1_16  STD  RESET
-Qdiv2<3>            3     5     FB1_17  STD  RESET
-Qdiv2<2>            3     5     FB1_18  STD  RESET
-Qdiv<0>             1     1     FB3_11  STD  RESET
-Qdiv2<0>            1     1     FB3_12  STD  RESET
-Qdiv2<1>            2     2     FB3_13  STD  RESET
-compteur<1>         3     5     FB3_15  STD  RESET
-command_FSM_FFd2    3     7     FB3_16  STD  RESET
-command_FSM_FFd1    3     7     FB3_17  STD  RESET
-compteur<0>         4     5     FB3_18  STD  RESET
-Qdiv<4>             2     5     FB4_13  STD  RESET
-Qdiv<3>             2     4     FB4_14  STD  RESET
-Qdiv<2>             2     3     FB4_15  STD  RESET
-CLK_bis             2     7     FB4_16  STD  RESET
-Qdiv<5>             3     7     FB4_17  STD  RESET
-Qdiv<1>             3     7     FB4_18  STD  RESET
+Qdiv<3>             2     4     FB1_12  STD  RESET
+Qdiv<2>             2     3     FB1_13  STD  RESET
+Qdiv<0>             2     7     FB1_14  STD  RESET
+CLK_bis             2     7     FB1_15  STD  RESET
+Qdiv<5>             3     7     FB1_16  STD  RESET
+Qdiv<4>             3     7     FB1_17  STD  RESET
+Qdiv<1>             3     7     FB1_18  STD  RESET
+Qdiv2<0>            1     1     FB2_14  STD  RESET
+compteur<1>         3     5     FB2_15  STD  RESET
+compteur<0>         3     5     FB2_16  STD  RESET
+command_FSM_FFd2    3     7     FB2_17  STD  RESET
+command_FSM_FFd1    3     7     FB2_18  STD  RESET
+Qdiv2<2>            2     3     FB4_14  STD  RESET
+CLK_ter             2     6     FB4_15  STD  RESET
+Qdiv2<4>            3     6     FB4_16  STD  RESET
+Qdiv2<3>            3     6     FB4_17  STD  RESET
+Qdiv2<1>            3     6     FB4_18  STD  RESET
 
 ** 5 Inputs **
 
@@ -138,8 +139,8 @@ Pin Type/Use - I  - Input             GCK - Global Clock
 X            - Signal used as input to the macrocell logic.
 Pin No.      - ~  - User Assigned
 *********************************** FB1  ***********************************
-Number of function block inputs used/remaining:               10/44
-Number of signals used by logic mapping into function block:  10
+Number of function block inputs used/remaining:               13/41
+Number of signals used by logic mapping into function block:  13
 Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
 Name                Pt      Pt    Pt  Pt               #    Type    Use
 (unused)              0       0     0   5     FB1_1         (b)     
@@ -153,51 +154,98 @@ ACK                   4       0     0   1     FB1_8   42    I/O     O
 (unused)              0       0     0   5     FB1_9   43    GCK/I/O I
 (unused)              0       0     0   5     FB1_10        (b)     
 (unused)              0       0     0   5     FB1_11  44    GCK/I/O I
-(unused)              0       0     0   5     FB1_12        (b)     
-(unused)              0       0     0   5     FB1_13        (b)     
-(unused)              0       0     0   5     FB1_14  1     GCK/I/O I
-(unused)              0       0     0   5     FB1_15  2     I/O     
-CLK_ter               2       0     0   3     FB1_16        (b)     (b)
-Qdiv2<3>              3       0     0   2     FB1_17  3     I/O     (b)
-Qdiv2<2>              3       0     0   2     FB1_18        (b)     (b)
+Qdiv<3>               2       0     0   3     FB1_12        (b)     (b)
+Qdiv<2>               2       0     0   3     FB1_13        (b)     (b)
+Qdiv<0>               2       0     0   3     FB1_14  1     GCK/I/O I
+CLK_bis               2       0     0   3     FB1_15  2     I/O     (b)
+Qdiv<5>               3       0     0   2     FB1_16        (b)     (b)
+Qdiv<4>               3       0     0   2     FB1_17  3     I/O     (b)
+Qdiv<1>               3       0     0   2     FB1_18        (b)     (b)
 
 Signals Used by Logic in Function Block
-  1: CLK                5: Qdiv2<2>           8: command_FSM_FFd2 
-  2: CLK_bis            6: Qdiv2<3>           9: compteur<0> 
-  3: Qdiv2<0>           7: command_FSM_FFd1  10: compteur<1> 
-  4: Qdiv2<1>         
+  1: ACK                6: Qdiv<2>           10: command_FSM_FFd1 
+  2: CLK                7: Qdiv<3>           11: command_FSM_FFd2 
+  3: CLK_bis            8: Qdiv<4>           12: compteur<0> 
+  4: Qdiv<0>            9: Qdiv<5>           13: compteur<1> 
+  5: Qdiv<1>          
 
 Signal                        1         2         3         4 FB
 Name                0----+----0----+----0----+----0----+----0 Inputs
-ACK                  .X....XXXX.............................. 5
-CLK_ter              X.XXXX.................................. 5
-Qdiv2<3>             X.XXXX.................................. 5
-Qdiv2<2>             X.XXXX.................................. 5
+ACK                  X.X......XXXX........................... 6
+Qdiv<3>              .X.XXX.................................. 4
+Qdiv<2>              .X.XX................................... 3
+Qdiv<0>              .X.XXXXXX............................... 7
+CLK_bis              .X.XXXXXX............................... 7
+Qdiv<5>              .X.XXXXXX............................... 7
+Qdiv<4>              .X.XXXXXX............................... 7
+Qdiv<1>              .X.XXXXXX............................... 7
                     0----+----1----+----2----+----3----+----4
                               0         0         0         0
 *********************************** FB2  ***********************************
-Number of function block inputs used/remaining:               5/49
-Number of signals used by logic mapping into function block:  5
+Number of function block inputs used/remaining:               13/41
+Number of signals used by logic mapping into function block:  13
 Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
 Name                Pt      Pt    Pt  Pt               #    Type    Use
 (unused)              0       0     0   5     FB2_1         (b)     
-K2                    5       0     0   0     FB2_2   29    I/O     O
+K2                    3       0     0   2     FB2_2   29    I/O     O
 (unused)              0       0     0   5     FB2_3         (b)     
 (unused)              0       0     0   5     FB2_4         (b)     
 (unused)              0       0     0   5     FB2_5   30    I/O     
 (unused)              0       0     0   5     FB2_6   31    I/O     
 (unused)              0       0     0   5     FB2_7         (b)     
-K4                    3       0     0   2     FB2_8   32    I/O     O
+K3                    3       0     0   2     FB2_8   32    I/O     O
 (unused)              0       0     0   5     FB2_9   33    GSR/I/O 
 (unused)              0       0     0   5     FB2_10        (b)     
 (unused)              0       0     0   5     FB2_11  34    GTS/I/O 
 (unused)              0       0     0   5     FB2_12        (b)     
 (unused)              0       0     0   5     FB2_13        (b)     
-(unused)              0       0     0   5     FB2_14  36    GTS/I/O 
-(unused)              0       0     0   5     FB2_15  37    I/O     
-(unused)              0       0     0   5     FB2_16        (b)     
-(unused)              0       0     0   5     FB2_17  38    I/O     
-(unused)              0       0     0   5     FB2_18        (b)     
+Qdiv2<0>              1       0     0   4     FB2_14  36    GTS/I/O (b)
+compteur<1>           3       0     0   2     FB2_15  37    I/O     (b)
+compteur<0>           3       0     0   2     FB2_16        (b)     (b)
+command_FSM_FFd2      3       0     0   2     FB2_17  38    I/O     (b)
+command_FSM_FFd1      3       0     0   2     FB2_18        (b)     (b)
+
+Signals Used by Logic in Function Block
+  1: CLK                6: LOAD              10: command_FSM_FFd1 
+  2: CLK_bis            7: MODE_0            11: command_FSM_FFd2 
+  3: CLK_ter            8: MODE_1            12: compteur<0> 
+  4: K2                 9: RESET             13: compteur<1> 
+  5: K3               
+
+Signal                        1         2         3         4 FB
+Name                0----+----0----+----0----+----0----+----0 Inputs
+K2                   .X.X......XXX........................... 5
+K3                   .X..X....XXXX........................... 6
+Qdiv2<0>             X....................................... 1
+compteur<1>          .X.......XXXX........................... 5
+compteur<0>          .X.......XXXX........................... 5
+command_FSM_FFd2     ..X..XXXXXX............................. 7
+command_FSM_FFd1     ..X..XXXXXX............................. 7
+                    0----+----1----+----2----+----3----+----4
+                              0         0         0         0
+*********************************** FB3  ***********************************
+Number of function block inputs used/remaining:               5/49
+Number of signals used by logic mapping into function block:  5
+Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
+Name                Pt      Pt    Pt  Pt               #    Type    Use
+(unused)              0       0     0   5     FB3_1         (b)     
+(unused)              0       0     0   5     FB3_2   5     I/O     I
+(unused)              0       0     0   5     FB3_3         (b)     
+(unused)              0       0     0   5     FB3_4         (b)     
+K4                    3       0     0   2     FB3_5   6     I/O     O
+(unused)              0       0     0   5     FB3_6         (b)     
+(unused)              0       0     0   5     FB3_7         (b)     
+(unused)              0       0     0   5     FB3_8   7     I/O     
+(unused)              0       0     0   5     FB3_9   8     I/O     
+(unused)              0       0     0   5     FB3_10        (b)     
+(unused)              0       0     0   5     FB3_11  12    I/O     
+(unused)              0       0     0   5     FB3_12        (b)     
+(unused)              0       0     0   5     FB3_13        (b)     
+K5                    0       0     0   5     FB3_14  13    I/O     O
+(unused)              0       0     0   5     FB3_15  14    I/O     
+(unused)              0       0     0   5     FB3_16  18    I/O     
+(unused)              0       0     0   5     FB3_17  16    I/O     
+(unused)              0       0     0   5     FB3_18        (b)     
 
 Signals Used by Logic in Function Block
   1: CLK_bis            3: command_FSM_FFd2   5: compteur<1> 
@@ -205,57 +253,13 @@ Signals Used by Logic in Function Block
 
 Signal                        1         2         3         4 FB
 Name                0----+----0----+----0----+----0----+----0 Inputs
-K2                   XXXXX................................... 5
 K4                   XXXXX................................... 5
-                    0----+----1----+----2----+----3----+----4
-                              0         0         0         0
-*********************************** FB3  ***********************************
-Number of function block inputs used/remaining:               13/41
-Number of signals used by logic mapping into function block:  13
-Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
-Name                Pt      Pt    Pt  Pt               #    Type    Use
-(unused)              0       0     0   5     FB3_1         (b)     
-(unused)              0       0     0   5     FB3_2   5     I/O     I
-(unused)              0       0     0   5     FB3_3         (b)     
-(unused)              0       0     0   5     FB3_4         (b)     
-K3                    3       0     0   2     FB3_5   6     I/O     O
-(unused)              0       0     0   5     FB3_6         (b)     
-(unused)              0       0     0   5     FB3_7         (b)     
-(unused)              0       0     0   5     FB3_8   7     I/O     
-(unused)              0       0     0   5     FB3_9   8     I/O     
-(unused)              0       0     0   5     FB3_10        (b)     
-Qdiv<0>               1       0     0   4     FB3_11  12    I/O     (b)
-Qdiv2<0>              1       0     0   4     FB3_12        (b)     (b)
-Qdiv2<1>              2       0     0   3     FB3_13        (b)     (b)
-K5                    0       0     0   5     FB3_14  13    I/O     O
-compteur<1>           3       0     0   2     FB3_15  14    I/O     (b)
-command_FSM_FFd2      3       0     0   2     FB3_16  18    I/O     (b)
-command_FSM_FFd1      3       0     0   2     FB3_17  16    I/O     (b)
-compteur<0>           4       0     0   1     FB3_18        (b)     (b)
-
-Signals Used by Logic in Function Block
-  1: CLK                6: MODE_0            10: command_FSM_FFd1 
-  2: CLK_bis            7: MODE_1            11: command_FSM_FFd2 
-  3: CLK_ter            8: Qdiv2<0>          12: compteur<0> 
-  4: K3                 9: RESET             13: compteur<1> 
-  5: LOAD             
-
-Signal                        1         2         3         4 FB
-Name                0----+----0----+----0----+----0----+----0 Inputs
-K3                   .X.X.....XXXX........................... 6
-Qdiv<0>              X....................................... 1
-Qdiv2<0>             X....................................... 1
-Qdiv2<1>             X......X................................ 2
 K5                   ........................................ 0
-compteur<1>          .X.......XXXX........................... 5
-command_FSM_FFd2     ..X.XXX.XXX............................. 7
-command_FSM_FFd1     ..X.XXX.XXX............................. 7
-compteur<0>          .X.......XXXX........................... 5
                     0----+----1----+----2----+----3----+----4
                               0         0         0         0
 *********************************** FB4  ***********************************
-Number of function block inputs used/remaining:               13/41
-Number of signals used by logic mapping into function block:  13
+Number of function block inputs used/remaining:               12/42
+Number of signals used by logic mapping into function block:  12
 Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
 Name                Pt      Pt    Pt  Pt               #    Type    Use
 (unused)              0       0     0   5     FB4_1         (b)     
@@ -270,47 +274,48 @@ K1                    4       0     0   1     FB4_2   19    I/O     O
 (unused)              0       0     0   5     FB4_10        (b)     
 (unused)              0       0     0   5     FB4_11  22    I/O     
 (unused)              0       0     0   5     FB4_12        (b)     
-Qdiv<4>               2       0     0   3     FB4_13        (b)     (b)
-Qdiv<3>               2       0     0   3     FB4_14  23    I/O     (b)
-Qdiv<2>               2       0     0   3     FB4_15  27    I/O     (b)
-CLK_bis               2       0     0   3     FB4_16        (b)     (b)
-Qdiv<5>               3       0     0   2     FB4_17  28    I/O     I
-Qdiv<1>               3       0     0   2     FB4_18        (b)     (b)
+(unused)              0       0     0   5     FB4_13        (b)     
+Qdiv2<2>              2       0     0   3     FB4_14  23    I/O     (b)
+CLK_ter               2       0     0   3     FB4_15  27    I/O     (b)
+Qdiv2<4>              3       0     0   2     FB4_16        (b)     (b)
+Qdiv2<3>              3       0     0   2     FB4_17  28    I/O     I
+Qdiv2<1>              3       0     0   2     FB4_18        (b)     (b)
 
 Signals Used by Logic in Function Block
-  1: CLK                6: Qdiv<2>           10: command_FSM_FFd1 
-  2: CLK_bis            7: Qdiv<3>           11: command_FSM_FFd2 
-  3: K1                 8: Qdiv<4>           12: compteur<0> 
-  4: Qdiv<0>            9: Qdiv<5>           13: compteur<1> 
-  5: Qdiv<1>          
+  1: CLK                5: Qdiv2<1>           9: command_FSM_FFd1 
+  2: CLK_bis            6: Qdiv2<2>          10: command_FSM_FFd2 
+  3: K1                 7: Qdiv2<3>          11: compteur<0> 
+  4: Qdiv2<0>           8: Qdiv2<4>          12: compteur<1> 
 
 Signal                        1         2         3         4 FB
 Name                0----+----0----+----0----+----0----+----0 Inputs
-K1                   .XX......XXXX........................... 6
-Qdiv<4>              X..XXXX................................. 5
-Qdiv<3>              X..XXX.................................. 4
-Qdiv<2>              X..XX................................... 3
-CLK_bis              X..XXXXXX............................... 7
-Qdiv<5>              X..XXXXXX............................... 7
-Qdiv<1>              X..XXXXXX............................... 7
+K1                   .XX.....XXXX............................ 6
+Qdiv2<2>             X..XX................................... 3
+CLK_ter              X..XXXXX................................ 6
+Qdiv2<4>             X..XXXXX................................ 6
+Qdiv2<3>             X..XXXXX................................ 6
+Qdiv2<1>             X..XXXXX................................ 6
                     0----+----1----+----2----+----3----+----4
                               0         0         0         0
 *******************************  Equations  ********************************
 
 ********** Mapped Logic **********
 
-FDCPE_ACK: FDCPE port map (ACK,ACK_D,CLK_bis,'0','0');
-ACK_D <= ((command_FSM_FFd2 AND NOT compteur(1) AND compteur(0))
-	OR (command_FSM_FFd2 AND compteur(0) AND 
-	command_FSM_FFd1)
-	OR (NOT command_FSM_FFd2 AND compteur(1) AND compteur(0)));
+FTCPE_ACK: FTCPE port map (ACK,ACK_T,CLK_bis,'0','0');
+ACK_T <= ((NOT ACK AND command_FSM_FFd2 AND NOT compteur(1) AND 
+	compteur(0))
+	OR (ACK AND NOT command_FSM_FFd2 AND NOT compteur(1) AND 
+	NOT compteur(0) AND NOT command_FSM_FFd1)
+	OR (NOT ACK AND NOT command_FSM_FFd2 AND compteur(1) AND 
+	compteur(0) AND NOT command_FSM_FFd1));
 
 FDCPE_CLK_bis: FDCPE port map (CLK_bis,CLK_bis_D,CLK,'0','0');
-CLK_bis_D <= (Qdiv(0) AND NOT Qdiv(1) AND NOT Qdiv(2) AND NOT Qdiv(3) AND 
-	NOT Qdiv(4) AND Qdiv(5));
+CLK_bis_D <= (NOT Qdiv(0) AND Qdiv(1) AND NOT Qdiv(2) AND NOT Qdiv(3) AND 
+	Qdiv(4) AND Qdiv(5));
 
 FDCPE_CLK_ter: FDCPE port map (CLK_ter,CLK_ter_D,CLK,'0','0');
-CLK_ter_D <= (Qdiv2(0) AND Qdiv2(1) AND NOT Qdiv2(2) AND Qdiv2(3));
+CLK_ter_D <= (Qdiv2(0) AND NOT Qdiv2(1) AND NOT Qdiv2(2) AND Qdiv2(3) AND 
+	Qdiv2(4));
 
 FTCPE_K1: FTCPE port map (K1,K1_T,CLK_bis,'0','0');
 K1_T <= ((NOT K1 AND command_FSM_FFd2 AND NOT compteur(1) AND 
@@ -320,11 +325,11 @@ K1_T <= ((NOT K1 AND command_FSM_FFd2 AND NOT compteur(1) AND
 	OR (K1 AND NOT command_FSM_FFd2 AND NOT compteur(1) AND 
 	NOT compteur(0) AND NOT command_FSM_FFd1));
 
-FDCPE_K2: FDCPE port map (K2,K2_D,CLK_bis,'0','0');
-K2_D <= ((K4 AND command_FSM_FFd2)
-	OR (K4 AND NOT compteur(1))
-	OR (K4 AND NOT compteur(0))
-	OR (command_FSM_FFd2 AND NOT compteur(1) AND NOT compteur(0)));
+FTCPE_K2: FTCPE port map (K2,K2_T,CLK_bis,'0','0');
+K2_T <= ((K2 AND NOT command_FSM_FFd2 AND compteur(1) AND 
+	compteur(0))
+	OR (NOT K2 AND command_FSM_FFd2 AND NOT compteur(1) AND 
+	NOT compteur(0)));
 
 FTCPE_K3: FTCPE port map (K3,K3_T,CLK_bis,'0','0');
 K3_T <= ((K3 AND NOT command_FSM_FFd2 AND compteur(1) AND 
@@ -343,21 +348,30 @@ K5 <= '0';
 
 FTCPE_Qdiv20: FTCPE port map (Qdiv2(0),'1',CLK,'0','0');
 
-FTCPE_Qdiv21: FTCPE port map (Qdiv2(1),Qdiv2(0),CLK,'0','0');
+FTCPE_Qdiv21: FTCPE port map (Qdiv2(1),Qdiv2_T(1),CLK,'0','0');
+Qdiv2_T(1) <= ((NOT Qdiv2(0))
+	OR (NOT Qdiv2(1) AND NOT Qdiv2(2) AND Qdiv2(3) AND Qdiv2(4)));
 
 FTCPE_Qdiv22: FTCPE port map (Qdiv2(2),Qdiv2_T(2),CLK,'0','0');
-Qdiv2_T(2) <= ((Qdiv2(0) AND Qdiv2(1) AND Qdiv2(2))
-	OR (Qdiv2(0) AND Qdiv2(1) AND NOT Qdiv2(3)));
+Qdiv2_T(2) <= (Qdiv2(0) AND Qdiv2(1));
 
 FTCPE_Qdiv23: FTCPE port map (Qdiv2(3),Qdiv2_T(3),CLK,'0','0');
 Qdiv2_T(3) <= ((Qdiv2(0) AND Qdiv2(1) AND Qdiv2(2))
-	OR (Qdiv2(0) AND Qdiv2(1) AND Qdiv2(3)));
+	OR (Qdiv2(0) AND NOT Qdiv2(1) AND NOT Qdiv2(2) AND Qdiv2(3) AND 
+	Qdiv2(4)));
 
-FTCPE_Qdiv0: FTCPE port map (Qdiv(0),'1',CLK,'0','0');
+FTCPE_Qdiv24: FTCPE port map (Qdiv2(4),Qdiv2_T(4),CLK,'0','0');
+Qdiv2_T(4) <= ((Qdiv2(0) AND Qdiv2(1) AND Qdiv2(2) AND Qdiv2(3))
+	OR (Qdiv2(0) AND NOT Qdiv2(1) AND NOT Qdiv2(2) AND Qdiv2(3) AND 
+	Qdiv2(4)));
+
+FTCPE_Qdiv0: FTCPE port map (Qdiv(0),Qdiv_T(0),CLK,'0','0');
+Qdiv_T(0) <= (NOT Qdiv(0) AND Qdiv(1) AND NOT Qdiv(2) AND NOT Qdiv(3) AND 
+	Qdiv(4) AND Qdiv(5));
 
 FTCPE_Qdiv1: FTCPE port map (Qdiv(1),Qdiv_T(1),CLK,'0','0');
-Qdiv_T(1) <= ((NOT Qdiv(0))
-	OR (NOT Qdiv(1) AND NOT Qdiv(2) AND NOT Qdiv(3) AND NOT Qdiv(4) AND 
+Qdiv_T(1) <= ((Qdiv(0))
+	OR (Qdiv(1) AND NOT Qdiv(2) AND NOT Qdiv(3) AND Qdiv(4) AND 
 	Qdiv(5)));
 
 FTCPE_Qdiv2: FTCPE port map (Qdiv(2),Qdiv_T(2),CLK,'0','0');
@@ -367,13 +381,15 @@ FTCPE_Qdiv3: FTCPE port map (Qdiv(3),Qdiv_T(3),CLK,'0','0');
 Qdiv_T(3) <= (Qdiv(0) AND Qdiv(1) AND Qdiv(2));
 
 FTCPE_Qdiv4: FTCPE port map (Qdiv(4),Qdiv_T(4),CLK,'0','0');
-Qdiv_T(4) <= (Qdiv(0) AND Qdiv(1) AND Qdiv(2) AND Qdiv(3));
+Qdiv_T(4) <= ((Qdiv(0) AND Qdiv(1) AND Qdiv(2) AND Qdiv(3))
+	OR (NOT Qdiv(0) AND Qdiv(1) AND NOT Qdiv(2) AND NOT Qdiv(3) AND 
+	Qdiv(4) AND Qdiv(5)));
 
 FTCPE_Qdiv5: FTCPE port map (Qdiv(5),Qdiv_T(5),CLK,'0','0');
 Qdiv_T(5) <= ((Qdiv(0) AND Qdiv(1) AND Qdiv(2) AND Qdiv(3) AND 
 	Qdiv(4))
-	OR (Qdiv(0) AND NOT Qdiv(1) AND NOT Qdiv(2) AND NOT Qdiv(3) AND 
-	NOT Qdiv(4) AND Qdiv(5)));
+	OR (NOT Qdiv(0) AND Qdiv(1) AND NOT Qdiv(2) AND NOT Qdiv(3) AND 
+	Qdiv(4) AND Qdiv(5)));
 
 FDCPE_command_FSM_FFd1: FDCPE port map (command_FSM_FFd1,command_FSM_FFd1_D,CLK_ter,'0','0');
 command_FSM_FFd1_D <= ((NOT RESET AND command_FSM_FFd1)
@@ -385,17 +401,15 @@ command_FSM_FFd2_D <= ((NOT RESET AND command_FSM_FFd2)
 	OR (LOAD AND NOT MODE_1 AND NOT MODE_0 AND NOT RESET AND 
 	NOT command_FSM_FFd1));
 
-FDCPE_compteur0: FDCPE port map (compteur(0),compteur_D(0),CLK_bis,'0','0');
-compteur_D(0) <= ((NOT command_FSM_FFd2 AND NOT compteur(1) AND compteur(0))
-	OR (NOT command_FSM_FFd2 AND compteur(0) AND 
+FTCPE_compteur0: FTCPE port map (compteur(0),compteur_T(0),CLK_bis,'0','0');
+compteur_T(0) <= ((command_FSM_FFd2 AND compteur(1) AND 
 	NOT command_FSM_FFd1)
-	OR (command_FSM_FFd2 AND compteur(1) AND NOT compteur(0) AND 
-	NOT command_FSM_FFd1));
+	OR (compteur(1) AND compteur(0) AND command_FSM_FFd1));
 
-FTCPE_compteur1: FTCPE port map (compteur(1),compteur_T(1),CLK_bis,'0','0');
-compteur_T(1) <= ((NOT command_FSM_FFd2 AND compteur(0) AND 
-	NOT command_FSM_FFd1)
-	OR (NOT compteur(1) AND compteur(0) AND command_FSM_FFd1));
+FDCPE_compteur1: FDCPE port map (compteur(1),compteur_D(1),CLK_bis,'0','0');
+compteur_D(1) <= ((NOT compteur(1) AND NOT compteur(0))
+	OR (NOT command_FSM_FFd2 AND compteur(1) AND compteur(0) AND 
+	NOT command_FSM_FFd1));
 
 Register Legend:
  FDCPE (Q,D,C,CLR,PRE,CE); 
@@ -431,11 +445,11 @@ No. Name                           No. Name
   3 KPR                              25 GND                           
   4 GND                              26 VCC                           
   5 CLK                              27 KPR                           
-  6 K3                               28 LOAD                          
+  6 K4                               28 LOAD                          
   7 KPR                              29 K2                            
   8 KPR                              30 KPR                           
   9 TDI                              31 KPR                           
- 10 TMS                              32 K4                            
+ 10 TMS                              32 K3                            
  11 TCK                              33 KPR                           
  12 KPR                              34 KPR                           
  13 K5                               35 VCC                           
