@@ -1,0 +1,12 @@
+V3 8
+FL /home/devaud/Bureau/BMS_5ESPE/BMS.vhd 2021/01/15.15:00:20 O.87xd
+EN work/BMS 1610719222 FL /home/devaud/Bureau/BMS_5ESPE/BMS.vhd \
+      PB ieee/std_logic_1164 1325952872 PB ieee/STD_LOGIC_UNSIGNED 1325952875 \
+      PB ieee/NUMERIC_STD 1325952877 LB UNISIM PH unisim/VCOMPONENTS 1325952880
+AR work/BMS/StateMachine 1610719223 \
+      FL /home/devaud/Bureau/BMS_5ESPE/BMS.vhd EN work/BMS 1610719222
+FL /home/devaud/Bureau/BMS_5ESPE/testcpt.vhd 2020/12/08.13:43:59 O.87xd
+EN work/testcpt 0 FL /home/devaud/Bureau/BMS_5ESPE/testcpt.vhd \
+      PB ieee/std_logic_1164 1325952872
+AR work/testcpt/behavior 0 \
+      FL /home/devaud/Bureau/BMS_5ESPE/testcpt.vhd EN work/testcpt 0 CP BMS

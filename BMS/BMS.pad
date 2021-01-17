@@ -1,0 +1,73 @@
+Release 8.1i - Fit O.87xd
+Copyright(c) 1995-2003 Xilinx Inc. All rights reserved
+
+ 1-15-2021  3:00PM
+
+NOTE: This file is designed to be imported into a spreadsheet program
+such as Microsoft Excel for viewing, printing and sorting. The pipe '|'
+character is used as the data field separator.
+This file is also designed to support parsing.
+
+Input file:  BMS.ngd
+output file: BMS.pad
+Part type:   xc9572xl
+Speed grade: -5
+Package:     vq44
+
+Pinout by Pin Number:
+
+-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+Pin Number|Signal Name|Pin Usage|Pin Name|Direction|IO Standard|IO Bank Number|{blank}|Slew Rate|Termination|{blank}|Voltage|Constraint|
+P1|MODE_0|I|I/O/GCK3|INPUT|||||||||
+P2|TIE||I/O||||||||||
+P3|TIE||I/O||||||||||
+P4|GND||GND||||||||||
+P5|CLK|I|I/O|INPUT|||||||||
+P6|K3|O|I/O|OUTPUT|||||||||
+P7|TIE||I/O||||||||||
+P8|TIE||I/O||||||||||
+P9|TDI||TDI||||||||||
+P10|TMS||TMS||||||||||
+P11|TCK||TCK||||||||||
+P12|TIE||I/O||||||||||
+P13|K5|O|I/O|OUTPUT|||||||||
+P14|TIE||I/O||||||||||
+P15|VCC||VCCINT||||||||||
+P16|TIE||I/O||||||||||
+P17|GND||GND||||||||||
+P18|TIE||I/O||||||||||
+P19|K1|O|I/O|OUTPUT|||||||||
+P20|TIE||I/O||||||||||
+P21|TIE||I/O||||||||||
+P22|TIE||I/O||||||||||
+P23|TIE||I/O||||||||||
+P24|TDO||TDO||||||||||
+P25|GND||GND||||||||||
+P26|VCC||VCCIO||||||||||
+P27|TIE||I/O||||||||||
+P28|LOAD|I|I/O|INPUT|||||||||
+P29|K2|O|I/O|OUTPUT|||||||||
+P30|TIE||I/O||||||||||
+P31|TIE||I/O||||||||||
+P32|K4|O|I/O|OUTPUT|||||||||
+P33|TIE||I/O/GSR||||||||||
+P34|TIE||I/O/GTS2||||||||||
+P35|VCC||VCCINT||||||||||
+P36|TIE||I/O/GTS1||||||||||
+P37|TIE||I/O||||||||||
+P38|TIE||I/O||||||||||
+P39|TIE||I/O||||||||||
+P40|TIE||I/O||||||||||
+P41|TIE||I/O||||||||||
+P42|ACK|O|I/O|OUTPUT|||||||||
+P43|RESET|I|I/O/GCK1|INPUT|||||||||
+P44|MODE_1|I|I/O/GCK2|INPUT|||||||||
+
+To preserve the pinout above for future design iterations in
+Project Navigator simply execute the (Lock Pins) process
+located under the (Implement Design) process in a toolbox named
+(Optional Implementation Tools) or invoke PIN2UCF from the
+command line. The location constraints will be written into your
+specified UCF file
+
+

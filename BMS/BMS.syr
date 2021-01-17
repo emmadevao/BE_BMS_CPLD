@@ -1,0 +1,278 @@
+Release 13.4 - xst O.87xd (lin64)
+Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+--> 
+Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.06 secs
+ 
+--> 
+Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.06 secs
+ 
+--> 
+Reading design: BMS.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "BMS.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "BMS"
+Output Format                      : NGC
+Target Device                      : XC9500XL CPLDs
+
+---- Source Options
+Top Module Name                    : BMS
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+
+---- Target Options
+Add IO Buffers                     : YES
+MACRO Preserve                     : YES
+XOR Preserve                       : YES
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Keep Hierarchy                     : Yes
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Verilog 2001                       : YES
+
+---- Other Options
+Clock Enable                       : YES
+wysiwyg                            : NO
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "/home/devaud/Bureau/BMS_5ESPE/BMS.vhd" in Library work.
+Entity <bms> compiled.
+Entity <bms> (Architecture <statemachine>) compiled.
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for entity <BMS> in library <work> (architecture <statemachine>).
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <BMS> in library <work> (Architecture <statemachine>).
+INFO:Xst:2679 - Register <K5> in unit <BMS> has a constant value of 0 during circuit operation. The register is replaced by logic.
+Entity <BMS> analyzed. Unit <BMS> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <BMS>.
+    Related source file is "/home/devaud/Bureau/BMS_5ESPE/BMS.vhd".
+    Register <K4> equivalent to <K2> has been removed
+INFO:Xst:1799 - State batt1 is never reached in FSM <command>.
+INFO:Xst:1799 - State batt2 is never reached in FSM <command>.
+    Found finite state machine <FSM_0> for signal <command>.
+    -----------------------------------------------------------------------
+    | States             | 3                                              |
+    | Transitions        | 7                                              |
+    | Inputs             | 3                                              |
+    | Outputs            | 3                                              |
+    | Clock              | CLK_ter                   (rising_edge)        |
+    | Reset              | RESET                     (positive)           |
+    | Reset type         | synchronous                                    |
+    | Reset State        | ouvert                                         |
+    | Power Up State     | ouvert                                         |
+    | Encoding           | automatic                                      |
+    | Implementation     | automatic                                      |
+    -----------------------------------------------------------------------
+    Found 4x1-bit ROM for signal <ACK$mux0006>.
+    Found 1-bit register for signal <K1>.
+    Found 1-bit register for signal <K2>.
+    Found 1-bit register for signal <K3>.
+    Found 1-bit register for signal <ACK>.
+    Found 1-bit register for signal <CLK_bis>.
+    Found 1-bit register for signal <CLK_ter>.
+    Found 2-bit register for signal <compteur>.
+    Found 2-bit adder for signal <compteur$addsub0000> created at line 174.
+    Found 6-bit up counter for signal <Qdiv>.
+    Found 4-bit up counter for signal <Qdiv2>.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred   1 ROM(s).
+	inferred   2 Counter(s).
+	inferred   4 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+Unit <BMS> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# ROMs                                                 : 1
+ 4x1-bit ROM                                           : 1
+# Adders/Subtractors                                   : 1
+ 2-bit adder                                           : 1
+# Counters                                             : 2
+ 4-bit up counter                                      : 1
+ 6-bit up counter                                      : 1
+# Registers                                            : 7
+ 1-bit register                                        : 6
+ 2-bit register                                        : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <command/FSM> on signal <command[1:2]> with sequential encoding.
+----------------------
+ State    | Encoding
+----------------------
+ ouvert   | 00
+ parallel | 01
+ series   | 10
+ batt1    | unreached
+ batt2    | unreached
+----------------------
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# FSMs                                                 : 1
+# ROMs                                                 : 1
+ 4x1-bit ROM                                           : 1
+# Adders/Subtractors                                   : 1
+ 2-bit adder                                           : 1
+# Counters                                             : 2
+ 4-bit up counter                                      : 1
+ 6-bit up counter                                      : 1
+# Registers                                            : 4
+ Flip-Flops                                            : 4
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <BMS> ...
+  implementation constraint: INIT=r	 : K1
+  implementation constraint: INIT=r	 : K2
+  implementation constraint: INIT=r	 : command_FSM_FFd1
+  implementation constraint: INIT=r	 : K3
+  implementation constraint: INIT=r	 : compteur_1
+  implementation constraint: INIT=r	 : command_FSM_FFd2
+  implementation constraint: INIT=r	 : ACK
+  implementation constraint: INIT=r	 : CLK_ter
+  implementation constraint: INIT=r	 : CLK_bis
+  implementation constraint: INIT=r	 : compteur_0
+  implementation constraint: INIT=r	 : Qdiv2_3
+  implementation constraint: INIT=r	 : Qdiv2_0
+  implementation constraint: INIT=r	 : Qdiv2_1
+  implementation constraint: INIT=r	 : Qdiv2_2
+  implementation constraint: INIT=r	 : Qdiv_5
+  implementation constraint: INIT=r	 : Qdiv_0
+  implementation constraint: INIT=r	 : Qdiv_1
+  implementation constraint: INIT=r	 : Qdiv_2
+  implementation constraint: INIT=r	 : Qdiv_3
+  implementation constraint: INIT=r	 : Qdiv_4
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : BMS.ngr
+Top Level Output File Name         : BMS
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : Yes
+Target Technology                  : XC9500XL CPLDs
+Macro Preserve                     : YES
+XOR Preserve                       : YES
+Clock Enable                       : YES
+wysiwyg                            : NO
+
+Design Statistics
+# IOs                              : 11
+
+Cell Usage :
+# BELS                             : 107
+#      AND2                        : 38
+#      AND3                        : 4
+#      AND4                        : 1
+#      GND                         : 1
+#      INV                         : 36
+#      OR2                         : 15
+#      OR3                         : 2
+#      XOR2                        : 10
+# FlipFlops/Latches                : 20
+#      FD                          : 20
+# IO Buffers                       : 11
+#      IBUF                        : 5
+#      OBUF                        : 6
+=========================================================================
+
+
+Total REAL time to Xst completion: 3.00 secs
+Total CPU time to Xst completion: 2.76 secs
+ 
+--> 
+
+
+Total memory usage is 522916 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    0 (   0 filtered)
+Number of infos    :    3 (   0 filtered)
+

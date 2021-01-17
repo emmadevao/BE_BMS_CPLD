@@ -1,0 +1,15 @@
+#PINLOCK_BEGIN
+
+#Fri Feb 24 18:52:54 2017
+NET "CLK" 	LOC="P5";
+NET "MODE_0"  LOC="P1";
+NET "MODE_1"  LOC="P44";
+NET "ACK"  LOC="P42";
+NET "RESET"  LOC="P43";
+#NET "Q[4]"  LOC="P40";
+#NET "Q[5]"  LOC="P39";
+#NET "Q[6]"  LOC="P38";
+#NET "Q[7]"  LOC="P37";
+
+
+#PINLOCK_END

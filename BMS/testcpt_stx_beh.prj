@@ -1,0 +1,2 @@
+vhdl isim_temp "../BMS.vhd"
+vhdl isim_temp "../testcpt.vhd"

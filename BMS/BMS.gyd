@@ -1,0 +1,32 @@
+Pin Freeze File:  version O.87xd
+
+9572XL44VQ XC9572XL-5-VQ44
+CLK S:PIN5
+LOAD S:PIN28
+MODE_0 S:PIN1
+MODE_1 S:PIN44
+RESET S:PIN43
+ACK S:PIN42
+K1 S:PIN19
+K3 S:PIN6
+K4 S:PIN32
+K2 S:PIN29
+K5 S:PIN13
+
+
+;The remaining section of the .gyd file is for documentation purposes only.
+;It shows where your internal equations were placed in the last successful fit.
+
+PARTITION FB1_8 ACK_OBUF
+PARTITION FB1_16 CLK_ter Qdiv2<3> Qdiv2<2>
+PARTITION FB2_2 K4_OBUF$BUF0
+PARTITION FB2_8 K4_OBUF
+
+PARTITION FB3_5 K3_OBUF
+PARTITION FB3_11 Qdiv<0> Qdiv2<0> Qdiv2<1> K5_OBUF
+		 compteur<1> command_FSM_FFd2 command_FSM_FFd1 compteur<0>
+		
+PARTITION FB4_2 K1_OBUF
+PARTITION FB4_13 Qdiv<4> Qdiv<3> Qdiv<2> CLK_bis
+		 Qdiv<5> Qdiv<1>
+
