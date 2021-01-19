@@ -11,5 +11,8 @@ Time resolution is 1 ps
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
+# run 1ms
+# run 1ms
+# run 10ms
 # run 10ms
 # exit 0

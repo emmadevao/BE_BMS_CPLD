@@ -73,23 +73,23 @@ ATTRIBUTE ENUM_ENCODING OF state: TYPE IS "000 001 010 100 101";
 
 -- compteur pour le délais de 1ms 
 signal compteur : STD_LOGIC_VECTOR(2 downto 0):="000"; 
-signal newcommand : STD_LOGIC := '0'; --permet de détecter le changement d'état et de remettre le compteur à zéro pour fermer les switchs dans le bon ordre 
+
+--permet de détecter le changement d'état et de remettre le compteur à zéro pour fermer les switches dans le bon ordre 
+signal newcommand : STD_LOGIC := '0'; 
 
 -- signal qui permet de ne pas changer d'état pendant que l'on effectue la configuration RESET
 signal busy : STD_LOGIC := '0';
 
 begin
 
--- Premier process : prescaler pour créer une clock à 0.5 ms (CLK à 20µs)
+--------- Premier process : prescaler pour créer une clock à 0.5 ms (CLK à 20ns)
 process(CLK)
 begin 
 
 if (CLK='1' and CLK'Event)then 
 
-	if Qdiv="1100001101010000"then 
-	--if Qdiv="11001"then  -- à décommenter pour les simulations 
-		CLK_bis<='1';
-		--Qdiv<="00000";  -- à décommenter pour les simulations 
+	if Qdiv="110000110101000"then -- valeur calculée pour tests sur carte d'essai clk CPDL = 50 MHz
+		CLK_bis<='1'; 
 		Qdiv<="0000000000000000";
 		
 	else 
@@ -100,7 +100,7 @@ end if;
 
 end process; 
 
--- Deuxième process : prescaler pour créer une clock à 1ms (% de la première CLK_bis)
+---------- Deuxième process : prescaler pour créer une clock à 1ms (% de la première CLK_bis qui est à 0,5ms)
 process(CLK_bis)
 begin 
 
@@ -119,7 +119,7 @@ end if;
 
 end process;
 
---------------------------------
+---------- Troisième process : Permey d'assurer la priorité du reset, rien ne peut se passer tant que la config du reset n'est pas terminée
 Reset_priority : process(CLK)
 begin 
 	if (CLK='1' and CLK'Event)then
@@ -131,9 +131,9 @@ begin
 	end if ; 
 end process Reset_priority ;
 
--------------------------------------
--- Machine à état de la configuaration des interrupteurs 
--- Synchrone avec la nouvelle clock CLK_ter
+------Quatrième process 
+-- Machine à état de la configuration des interrupteurs : mise à jour des états
+-- Synchrone avec  CLK_bis à 0,5ms
 
 Config_mode : process(CLK_bis)
 
@@ -180,18 +180,11 @@ if (CLK_bis='1' and CLK_bis'Event)then
 end if; 
 end process Config_mode ;
 
-
+---- Cinquième process 
+-- Synchrone avec la CLK_ter à 1ms
+-- Machine à état de la configuration des interrupteurs : mise à jour des outputs
 Config_switch : process(CLK_ter)
 begin
-
---if (command=OUVERT and compteur/="111") then 
-	--busy<='1'; -- on ne peut pas changer de configuration tant que les interrupteurs ne sont pas tous ouverts
---else 
-	--busy<='0'; 
---end if;
-
-
-
 	
 if (CLK_ter='1' and CLK_ter'Event)then
 
@@ -218,7 +211,7 @@ if (CLK_ter='1' and CLK_ter'Event)then
 									K2<='0';
 									ACK<='1'; 
 									compteur<="111"; -- valeur du compteur quand attente du nouvelle commande, permet de faire les configs qu'une seule fois 
-									--busy<='0';
+									
 							ELSE 
 									ACK<='0';
 								
