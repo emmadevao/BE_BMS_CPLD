@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.03 secs
+Total CPU time to Xst completion: 0.04 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.03 secs
+Total CPU time to Xst completion: 0.04 secs
  
 --> 
 Reading design: BMS.prj
@@ -79,19 +79,19 @@ wysiwyg                            : NO
 *                          HDL Compilation                              *
 =========================================================================
 Compiling vhdl file "/home/devaud/Bureau/BMS_5ESPE/BMS.vhd" in Library work.
-Entity <BMS> compiled.
-Entity <BMS> (Architecture <StateMachine>) compiled.
+Entity <bms> compiled.
+Entity <bms> (Architecture <statemachine>) compiled.
 
 =========================================================================
 *                     Design Hierarchy Analysis                         *
 =========================================================================
-Analyzing hierarchy for entity <BMS> in library <work> (architecture <StateMachine>).
+Analyzing hierarchy for entity <BMS> in library <work> (architecture <statemachine>).
 
 
 =========================================================================
 *                            HDL Analysis                               *
 =========================================================================
-Analyzing Entity <BMS> in library <work> (Architecture <StateMachine>).
+Analyzing Entity <BMS> in library <work> (Architecture <statemachine>).
     Set property "ENUM_ENCODING = 000 001 010 100 101" for signal <command>.
 Entity <BMS> analyzed. Unit <BMS> generated.
 
@@ -142,7 +142,7 @@ Synthesizing Unit <BMS>.
     Found 1-bit register for signal <CLK_bis>.
     Found 1-bit register for signal <CLK_ter>.
     Found 1-bit register for signal <newcommand>.
-    Found 5-bit up counter for signal <Qdiv>.
+    Found 16-bit up counter for signal <Qdiv>.
     Found 2-bit up counter for signal <Qdiv2>.
     Summary:
 	inferred   2 Finite State Machine(s).
@@ -156,8 +156,8 @@ HDL Synthesis Report
 
 Macro Statistics
 # Counters                                             : 2
+ 16-bit up counter                                     : 1
  2-bit up counter                                      : 1
- 5-bit up counter                                      : 1
 # Registers                                            : 10
  1-bit register                                        : 10
 
@@ -196,8 +196,8 @@ Advanced HDL Synthesis Report
 Macro Statistics
 # FSMs                                                 : 2
 # Counters                                             : 2
+ 16-bit up counter                                     : 1
  2-bit up counter                                      : 1
- 5-bit up counter                                      : 1
 # Registers                                            : 5
  Flip-Flops                                            : 5
 
@@ -224,12 +224,23 @@ Optimizing unit <BMS> ...
   implementation constraint: INIT=r	 : Qdiv2_1
   implementation constraint: INIT=r	 : command_FSM_FFd3
   implementation constraint: INIT=r	 : Qdiv2_0
-  implementation constraint: INIT=r	 : Qdiv_4
+  implementation constraint: INIT=r	 : Qdiv_15
   implementation constraint: INIT=r	 : command_FSM_FFd2
   implementation constraint: INIT=r	 : Qdiv_0
   implementation constraint: INIT=r	 : Qdiv_1
   implementation constraint: INIT=r	 : Qdiv_2
   implementation constraint: INIT=r	 : Qdiv_3
+  implementation constraint: INIT=r	 : Qdiv_4
+  implementation constraint: INIT=r	 : Qdiv_5
+  implementation constraint: INIT=r	 : Qdiv_6
+  implementation constraint: INIT=r	 : Qdiv_7
+  implementation constraint: INIT=r	 : Qdiv_8
+  implementation constraint: INIT=r	 : Qdiv_9
+  implementation constraint: INIT=r	 : Qdiv_10
+  implementation constraint: INIT=r	 : Qdiv_11
+  implementation constraint: INIT=r	 : Qdiv_12
+  implementation constraint: INIT=r	 : Qdiv_13
+  implementation constraint: INIT=r	 : Qdiv_14
   implementation constraint: INIT=r	 : K1
   implementation constraint: INIT=r	 : K2
 
@@ -263,19 +274,20 @@ Design Statistics
 # IOs                              : 11
 
 Cell Usage :
-# BELS                             : 149
-#      AND2                        : 41
+# BELS                             : 206
+#      AND2                        : 65
 #      AND3                        : 7
-#      AND4                        : 2
+#      AND4                        : 3
 #      AND5                        : 2
+#      AND8                        : 1
 #      GND                         : 1
-#      INV                         : 55
+#      INV                         : 75
 #      OR2                         : 32
 #      OR3                         : 3
 #      OR4                         : 1
-#      XOR2                        : 5
-# FlipFlops/Latches                : 24
-#      FD                          : 18
+#      XOR2                        : 16
+# FlipFlops/Latches                : 35
+#      FD                          : 29
 #      FDCE                        : 6
 # IO Buffers                       : 11
 #      IBUF                        : 5
@@ -283,13 +295,13 @@ Cell Usage :
 =========================================================================
 
 
-Total REAL time to Xst completion: 3.00 secs
+Total REAL time to Xst completion: 2.00 secs
 Total CPU time to Xst completion: 2.27 secs
  
 --> 
 
 
-Total memory usage is 525668 kilobytes
+Total memory usage is 527832 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    0 (   0 filtered)

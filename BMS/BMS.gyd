@@ -1,32 +1,33 @@
 Pin Freeze File:  version O.87xd
 
 9572XL44VQ XC9572XL-5-VQ44
-CLK S:PIN5
-LOAD S:PIN21
-MODE_0 S:PIN1
-MODE_1 S:PIN44
-RESET S:PIN43
-ACK S:PIN42
-K1 S:PIN6
-K2 S:PIN32
-K3 S:PIN13
-K4 S:PIN29
-K5 S:PIN19
+CLK S:PIN43
+LOAD S:PIN19
+MODE_0 S:PIN16
+MODE_1 S:PIN18
+RESET S:PIN14
+ACK S:PIN36
+K1 S:PIN30
+K2 S:PIN31
+K3 S:PIN32
+K4 S:PIN33
+K5 S:PIN34
 
 
 ;The remaining section of the .gyd file is for documentation purposes only.
 ;It shows where your internal equations were placed in the last successful fit.
 
-PARTITION FB1_7 EXP6_ ACK_OBUF EXP7_ Qdiv<0>
-		 Qdiv2<0> compteur_FSM_FFd5 compteur_FSM_FFd4 command_FSM_FFd2
-		 newcommand compteur_FSM_FFd2 compteur_FSM_FFd3 busy
+PARTITION FB1_3 Qdiv<7> Qdiv<5> Qdiv<3> Qdiv<2>
+		 Qdiv<13> Qdiv<12> Qdiv<11> Qdiv<10>
+		 Qdiv<0> CLK_bis Qdiv<9> Qdiv<8>
+		 Qdiv<6> Qdiv<4> Qdiv<15> Qdiv<14>
 		
-PARTITION FB2_2 K4_OBUF
-PARTITION FB2_8 K2_OBUF
-PARTITION FB2_17 command_FSM_FFd3 command_FSM_FFd1
-PARTITION FB3_5 K1_OBUF
-PARTITION FB3_13 Qdiv<2> K3_OBUF CLK_bis Qdiv<4>
-		 Qdiv<3> Qdiv<1>
-PARTITION FB4_2 K5_OBUF
-PARTITION FB4_17 Qdiv2<1> CLK_ter
+PARTITION FB2_5 K1_OBUF K2_OBUF
+PARTITION FB2_8 K3_OBUF K4_OBUF
+PARTITION FB2_11 K5_OBUF Qdiv<1> compteur_FSM_FFd5 ACK_OBUF
+		 compteur_FSM_FFd4 compteur_FSM_FFd2 busy compteur_FSM_FFd3
+		
+PARTITION FB3_12 Qdiv2<0> Qdiv2<1> CLK_ter command_FSM_FFd3
+		 command_FSM_FFd2 command_FSM_FFd1 newcommand
+
 
