@@ -1,15 +1,16 @@
 #PINLOCK_BEGIN
 
-#Fri Feb 24 18:52:54 2017
-NET "CLK" 	LOC="P5";
-NET "MODE_0"  LOC="P1";
-NET "MODE_1"  LOC="P44";
-NET "ACK"  LOC="P42";
-NET "RESET"  LOC="P43";
-#NET "Q[4]"  LOC="P40";
-#NET "Q[5]"  LOC="P39";
-#NET "Q[6]"  LOC="P38";
-#NET "Q[7]"  LOC="P37";
-
+    NET "RESET" LOC="P14";
+    NET "MODE_0" LOC="P16";
+    NET "MODE_1" LOC="P18";
+    NET "LOAD" LOC="P19";
+    NET "CLK" LOC="P43";
+    NET "K1" LOC="P30";
+    NET "K2" LOC="P31";
+    NET "K3" LOC="P32";
+    NET "K4" LOC="P33";
+    NET "K5" LOC="P34";
+    NET "ACK" LOC="P36";
 
 #PINLOCK_END
+

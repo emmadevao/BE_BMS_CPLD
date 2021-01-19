@@ -1,14 +1,14 @@
 Running: /usr/local/insa/Xilinx.ISE/13.4/ISE_DS/ISE/bin/lin64/unwrapped/fuse -intstyle ise -incremental -o /home/devaud/Bureau/BMS_5ESPE/BMS/testcpt_isim_beh.exe -prj /home/devaud/Bureau/BMS_5ESPE/BMS/testcpt_beh.prj work.testcpt 
 ISim O.87xd (signature 0x8ddf5b5d)
-Number of CPUs detected in this system: 64
-Turning on mult-threading, number of parallel sub-compilation jobs: 128 
+Number of CPUs detected in this system: 8
+Turning on mult-threading, number of parallel sub-compilation jobs: 16 
 Determining compilation order of HDL files
 Parsing VHDL file "/home/devaud/Bureau/BMS_5ESPE/BMS/../BMS.vhd" into library work
 Parsing VHDL file "/home/devaud/Bureau/BMS_5ESPE/BMS/../testcpt.vhd" into library work
 Starting static elaboration
 Completed static elaboration
-Fuse Memory Usage: 113820 KB
-Fuse CPU Usage: 1160 ms
+Fuse Memory Usage: 113824 KB
+Fuse CPU Usage: 840 ms
 Compiling package standard
 Compiling package std_logic_1164
 Compiling package std_logic_arith
@@ -20,6 +20,6 @@ Compiling architecture behavior of entity testcpt
 Time Resolution for simulation is 1ps.
 Compiled 9 VHDL Units
 Built simulation executable /home/devaud/Bureau/BMS_5ESPE/BMS/testcpt_isim_beh.exe
-Fuse Memory Usage: 8554856 KB
-Fuse CPU Usage: 1400 ms
-GCC CPU Usage: 340 ms
+Fuse Memory Usage: 1214756 KB
+Fuse CPU Usage: 960 ms
+GCC CPU Usage: 1830 ms

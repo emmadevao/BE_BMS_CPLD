@@ -5,115 +5,138 @@
 </td></tr><tr><td>
 ********** Mapped Logic **********
 </td></tr><tr><td>
-FTCPE_ACK: FTCPE port map (ACK,ACK_T,CLK_bis,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ACK_T <= ((NOT ACK AND command_FSM_FFd2 AND NOT compteur(1) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	compteur(0))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (ACK AND NOT command_FSM_FFd2 AND NOT compteur(1) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT compteur(0) AND NOT command_FSM_FFd1)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT ACK AND NOT command_FSM_FFd2 AND compteur(1) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	compteur(0) AND NOT command_FSM_FFd1));
+FDCPE_ACK: FDCPE port map (ACK,ACK_D,CLK_ter,'0','0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ACK_D <= ((NOT newcommand AND NOT command_FSM_FFd3 AND command_FSM_FFd2 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	compteur_FSM_FFd3)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT newcommand AND ACK AND NOT command_FSM_FFd3 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT command_FSM_FFd1 AND compteur_FSM_FFd3)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT newcommand AND NOT command_FSM_FFd3 AND NOT command_FSM_FFd1 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT command_FSM_FFd2 AND compteur_FSM_FFd2)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT newcommand AND ACK AND compteur_FSM_FFd5)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT newcommand AND ACK AND compteur_FSM_FFd4)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT newcommand AND command_FSM_FFd3 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT compteur_FSM_FFd5 AND compteur_FSM_FFd4)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT newcommand AND command_FSM_FFd1 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT compteur_FSM_FFd5 AND compteur_FSM_FFd4));
 </td></tr><tr><td>
 FDCPE_CLK_bis: FDCPE port map (CLK_bis,CLK_bis_D,CLK,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLK_bis_D <= (NOT Qdiv(0) AND Qdiv(1) AND NOT Qdiv(2) AND NOT Qdiv(3) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	Qdiv(4) AND Qdiv(5));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLK_bis_D <= (Qdiv(0) AND NOT Qdiv(1) AND NOT Qdiv(2) AND Qdiv(3) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	Qdiv(4));
 </td></tr><tr><td>
-FDCPE_CLK_ter: FDCPE port map (CLK_ter,CLK_ter_D,CLK,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLK_ter_D <= (Qdiv2(0) AND NOT Qdiv2(1) AND NOT Qdiv2(2) AND Qdiv2(3) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	Qdiv2(4));
-</td></tr><tr><td>
-FTCPE_K1: FTCPE port map (K1,K1_T,CLK_bis,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;K1_T <= ((NOT K1 AND command_FSM_FFd2 AND NOT compteur(1) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	compteur(0))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (K1 AND NOT command_FSM_FFd2 AND NOT compteur(1) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	compteur(0) AND command_FSM_FFd1)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (K1 AND NOT command_FSM_FFd2 AND NOT compteur(1) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT compteur(0) AND NOT command_FSM_FFd1));
-</td></tr><tr><td>
-FTCPE_K2: FTCPE port map (K2,K2_T,CLK_bis,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;K2_T <= ((K2 AND NOT command_FSM_FFd2 AND compteur(1) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	compteur(0))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT K2 AND command_FSM_FFd2 AND NOT compteur(1) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT compteur(0)));
-</td></tr><tr><td>
-FTCPE_K3: FTCPE port map (K3,K3_T,CLK_bis,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;K3_T <= ((K3 AND NOT command_FSM_FFd2 AND compteur(1) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT compteur(0))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT K3 AND NOT compteur(1) AND NOT compteur(0) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	command_FSM_FFd1));
-</td></tr><tr><td>
-FTCPE_K4: FTCPE port map (K4,K4_T,CLK_bis,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;K4_T <= ((K4 AND NOT command_FSM_FFd2 AND compteur(1) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	compteur(0))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT K4 AND command_FSM_FFd2 AND NOT compteur(1) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT compteur(0)));
+FDCPE_CLK_ter: FDCPE port map (CLK_ter,CLK_ter_D,CLK_bis,'0','0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLK_ter_D <= (Qdiv2(0) AND NOT Qdiv2(1));
 </td></tr><tr><td>
 </td></tr><tr><td>
-K5 <= '0';
 </td></tr><tr><td>
-FTCPE_Qdiv20: FTCPE port map (Qdiv2(0),'1',CLK,'0','0');
 </td></tr><tr><td>
-FTCPE_Qdiv21: FTCPE port map (Qdiv2(1),Qdiv2_T(1),CLK,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qdiv2_T(1) <= ((NOT Qdiv2(0))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT Qdiv2(1) AND NOT Qdiv2(2) AND Qdiv2(3) AND Qdiv2(4)));
 </td></tr><tr><td>
-FTCPE_Qdiv22: FTCPE port map (Qdiv2(2),Qdiv2_T(2),CLK,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qdiv2_T(2) <= (Qdiv2(0) AND Qdiv2(1));
+FDCPE_K1: FDCPE port map (K1,K1_D,CLK_ter,'0','0',NOT newcommand);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;K1_D <= ((NOT K1 AND NOT compteur_FSM_FFd4)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT K1 AND NOT command_FSM_FFd3 AND NOT command_FSM_FFd1 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT command_FSM_FFd2)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT command_FSM_FFd3 AND NOT command_FSM_FFd1 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT command_FSM_FFd2 AND compteur_FSM_FFd5));
 </td></tr><tr><td>
-FTCPE_Qdiv23: FTCPE port map (Qdiv2(3),Qdiv2_T(3),CLK,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qdiv2_T(3) <= ((Qdiv2(0) AND Qdiv2(1) AND Qdiv2(2))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Qdiv2(0) AND NOT Qdiv2(1) AND NOT Qdiv2(2) AND Qdiv2(3) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	Qdiv2(4)));
+FTCPE_K2: FTCPE port map (K2,K2_T,CLK_ter,'0','0',NOT newcommand);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;K2_T <= ((NOT K2 AND command_FSM_FFd3 AND compteur_FSM_FFd5)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (K2 AND NOT command_FSM_FFd3 AND NOT command_FSM_FFd1 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT command_FSM_FFd2 AND compteur_FSM_FFd2));
 </td></tr><tr><td>
-FTCPE_Qdiv24: FTCPE port map (Qdiv2(4),Qdiv2_T(4),CLK,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qdiv2_T(4) <= ((Qdiv2(0) AND Qdiv2(1) AND Qdiv2(2) AND Qdiv2(3))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Qdiv2(0) AND NOT Qdiv2(1) AND NOT Qdiv2(2) AND Qdiv2(3) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	Qdiv2(4)));
+FTCPE_K3: FTCPE port map (K3,K3_T,CLK_ter,'0','0',NOT newcommand);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;K3_T <= ((NOT K3 AND NOT command_FSM_FFd3 AND command_FSM_FFd2 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	compteur_FSM_FFd5)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (K3 AND NOT command_FSM_FFd3 AND NOT command_FSM_FFd1 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT command_FSM_FFd2 AND compteur_FSM_FFd3));
 </td></tr><tr><td>
-FTCPE_Qdiv0: FTCPE port map (Qdiv(0),Qdiv_T(0),CLK,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qdiv_T(0) <= (NOT Qdiv(0) AND Qdiv(1) AND NOT Qdiv(2) AND NOT Qdiv(3) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	Qdiv(4) AND Qdiv(5));
+FTCPE_K4: FTCPE port map (K4,K4_T,CLK_ter,'0','0',NOT newcommand);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;K4_T <= ((NOT K4 AND command_FSM_FFd1 AND compteur_FSM_FFd5)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT K4 AND command_FSM_FFd3 AND NOT command_FSM_FFd2 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	compteur_FSM_FFd5)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (K4 AND NOT command_FSM_FFd3 AND NOT command_FSM_FFd1 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT command_FSM_FFd2 AND compteur_FSM_FFd2));
+</td></tr><tr><td>
+FTCPE_K5: FTCPE port map (K5,K5_T,CLK_ter,'0','0',NOT newcommand);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;K5_T <= ((NOT K5 AND NOT command_FSM_FFd3 AND command_FSM_FFd2 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	compteur_FSM_FFd3)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (K5 AND NOT command_FSM_FFd3 AND NOT command_FSM_FFd1 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT command_FSM_FFd2 AND compteur_FSM_FFd4));
+</td></tr><tr><td>
+FTCPE_Qdiv20: FTCPE port map (Qdiv2(0),'1',CLK_bis,'0','0');
+</td></tr><tr><td>
+FDCPE_Qdiv21: FDCPE port map (Qdiv2(1),Qdiv2_D(1),CLK_bis,'0','0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qdiv2_D(1) <= (NOT Qdiv2(0) AND Qdiv2(1));
+</td></tr><tr><td>
+FTCPE_Qdiv0: FTCPE port map (Qdiv(0),'1',CLK,'0','0');
 </td></tr><tr><td>
 FTCPE_Qdiv1: FTCPE port map (Qdiv(1),Qdiv_T(1),CLK,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qdiv_T(1) <= ((Qdiv(0))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Qdiv(1) AND NOT Qdiv(2) AND NOT Qdiv(3) AND Qdiv(4) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	Qdiv(5)));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qdiv_T(1) <= ((NOT Qdiv(0))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT Qdiv(1) AND NOT Qdiv(2) AND Qdiv(3) AND Qdiv(4)));
 </td></tr><tr><td>
 FTCPE_Qdiv2: FTCPE port map (Qdiv(2),Qdiv_T(2),CLK,'0','0');
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qdiv_T(2) <= (Qdiv(0) AND Qdiv(1));
 </td></tr><tr><td>
 FTCPE_Qdiv3: FTCPE port map (Qdiv(3),Qdiv_T(3),CLK,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qdiv_T(3) <= (Qdiv(0) AND Qdiv(1) AND Qdiv(2));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qdiv_T(3) <= ((Qdiv(0) AND Qdiv(1) AND Qdiv(2))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Qdiv(0) AND NOT Qdiv(1) AND NOT Qdiv(2) AND Qdiv(3) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	Qdiv(4)));
 </td></tr><tr><td>
 FTCPE_Qdiv4: FTCPE port map (Qdiv(4),Qdiv_T(4),CLK,'0','0');
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qdiv_T(4) <= ((Qdiv(0) AND Qdiv(1) AND Qdiv(2) AND Qdiv(3))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT Qdiv(0) AND Qdiv(1) AND NOT Qdiv(2) AND NOT Qdiv(3) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	Qdiv(4) AND Qdiv(5)));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Qdiv(0) AND NOT Qdiv(1) AND NOT Qdiv(2) AND Qdiv(3) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	Qdiv(4)));
 </td></tr><tr><td>
-FTCPE_Qdiv5: FTCPE port map (Qdiv(5),Qdiv_T(5),CLK,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qdiv_T(5) <= ((Qdiv(0) AND Qdiv(1) AND Qdiv(2) AND Qdiv(3) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	Qdiv(4))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT Qdiv(0) AND Qdiv(1) AND NOT Qdiv(2) AND NOT Qdiv(3) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	Qdiv(4) AND Qdiv(5)));
+FDCPE_busy: FDCPE port map (busy,busy_D,CLK,'0','0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;busy_D <= ((NOT command_FSM_FFd3 AND NOT command_FSM_FFd1 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT command_FSM_FFd2 AND compteur_FSM_FFd5)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT command_FSM_FFd3 AND NOT command_FSM_FFd1 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT command_FSM_FFd2 AND compteur_FSM_FFd3)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT command_FSM_FFd3 AND NOT command_FSM_FFd1 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT command_FSM_FFd2 AND compteur_FSM_FFd4)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT command_FSM_FFd3 AND NOT command_FSM_FFd1 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT command_FSM_FFd2 AND compteur_FSM_FFd2));
 </td></tr><tr><td>
-FDCPE_command_FSM_FFd1: FDCPE port map (command_FSM_FFd1,command_FSM_FFd1_D,CLK_ter,'0','0');
+FDCPE_command_FSM_FFd1: FDCPE port map (command_FSM_FFd1,command_FSM_FFd1_D,CLK_bis,'0','0');
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command_FSM_FFd1_D <= ((NOT RESET AND command_FSM_FFd1)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LOAD AND MODE_1 AND MODE_0 AND NOT RESET AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT command_FSM_FFd2));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LOAD AND MODE_1 AND NOT RESET AND NOT command_FSM_FFd3 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT command_FSM_FFd2 AND NOT busy AND NOT MODE_0));
 </td></tr><tr><td>
-FDCPE_command_FSM_FFd2: FDCPE port map (command_FSM_FFd2,command_FSM_FFd2_D,CLK_ter,'0','0');
+FDCPE_command_FSM_FFd2: FDCPE port map (command_FSM_FFd2,command_FSM_FFd2_D,CLK_bis,'0','0');
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command_FSM_FFd2_D <= ((NOT RESET AND command_FSM_FFd2)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LOAD AND NOT MODE_1 AND NOT MODE_0 AND NOT RESET AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT command_FSM_FFd1));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LOAD AND NOT RESET AND NOT command_FSM_FFd3 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT command_FSM_FFd1 AND NOT busy AND MODE_0));
 </td></tr><tr><td>
-FTCPE_compteur0: FTCPE port map (compteur(0),compteur_T(0),CLK_bis,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;compteur_T(0) <= ((command_FSM_FFd2 AND compteur(1) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT command_FSM_FFd1)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (compteur(1) AND compteur(0) AND command_FSM_FFd1));
+FDCPE_command_FSM_FFd3: FDCPE port map (command_FSM_FFd3,command_FSM_FFd3_D,CLK_bis,'0','0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command_FSM_FFd3_D <= ((NOT RESET AND command_FSM_FFd3)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LOAD AND NOT MODE_1 AND NOT RESET AND NOT command_FSM_FFd1 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT command_FSM_FFd2 AND NOT busy));
 </td></tr><tr><td>
-FDCPE_compteur1: FDCPE port map (compteur(1),compteur_D(1),CLK_bis,'0','0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;compteur_D(1) <= ((NOT compteur(1) AND NOT compteur(0))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT command_FSM_FFd2 AND compteur(1) AND compteur(0) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT command_FSM_FFd1));
+FTCPE_compteur_FSM_FFd2: FTCPE port map (compteur_FSM_FFd2,compteur_FSM_FFd2_T,CLK_ter,'0','0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;compteur_FSM_FFd2_T <= ((newcommand AND compteur_FSM_FFd2)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT command_FSM_FFd3 AND NOT command_FSM_FFd1 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT command_FSM_FFd2 AND NOT compteur_FSM_FFd3 AND compteur_FSM_FFd2)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT newcommand AND NOT command_FSM_FFd3 AND NOT command_FSM_FFd1 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT command_FSM_FFd2 AND compteur_FSM_FFd3 AND NOT compteur_FSM_FFd2));
+</td></tr><tr><td>
+FDCPE_compteur_FSM_FFd3: FDCPE port map (compteur_FSM_FFd3,compteur_FSM_FFd3_D,CLK_ter,'0','0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;compteur_FSM_FFd3_D <= ((NOT newcommand AND command_FSM_FFd3 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	compteur_FSM_FFd3)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT newcommand AND command_FSM_FFd1 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	compteur_FSM_FFd3)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT newcommand AND NOT command_FSM_FFd3 AND NOT command_FSM_FFd1 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	compteur_FSM_FFd4)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT newcommand AND NOT command_FSM_FFd3 AND command_FSM_FFd2 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	compteur_FSM_FFd4));
+</td></tr><tr><td>
+FDCPE_compteur_FSM_FFd4: FDCPE port map (compteur_FSM_FFd4,compteur_FSM_FFd4_D,CLK_ter,'0','0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;compteur_FSM_FFd4_D <= (NOT newcommand AND compteur_FSM_FFd5);
+</td></tr><tr><td>
+FDCPE_compteur_FSM_FFd5: FDCPE port map (compteur_FSM_FFd5,newcommand,CLK_ter,'0','0');
+</td></tr><tr><td>
+FDCPE_newcommand: FDCPE port map (newcommand,newcommand_D,CLK_bis,'0','0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;newcommand_D <= ((RESET)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (newcommand AND NOT compteur_FSM_FFd5)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LOAD AND NOT command_FSM_FFd3 AND NOT command_FSM_FFd1 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT command_FSM_FFd2 AND NOT busy));
 </td></tr><tr><td>
 Register Legend:
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FDCPE (Q,D,C,CLR,PRE,CE); 

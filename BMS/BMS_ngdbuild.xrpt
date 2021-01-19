@@ -5,7 +5,7 @@
     The structure and the elements are likely to change over the next few releases.
     This means code written to parse this file will need to be revisited each subsequent release.-->
 
-  <application stringID="NgdBuild" timeStamp="Sun Jan 17 14:33:31 2021">
+  <application stringID="NgdBuild" timeStamp="Tue Jan 19 14:23:22 2021">
     <section stringID="User_Env">
       <table stringID="User_EnvVar">
         <column stringID="variable"/>
@@ -20,7 +20,7 @@
         </row>
         <row stringID="row" value="2">
           <item stringID="variable" value="PATH"/>
-          <item stringID="value" value="/usr/local/insa/Xilinx.ISE/13.4/ISE_DS/ISE//bin/lin64:/usr/local/insa/shared/opam/system/bin:/usr/local/insa/lustre-v4-III-dc-linux64/bin:/usr/local/insa/arm-ada/compilateur/gcc-arm-none-eabi/bin:/usr/local/insa/anaconda/bin:/usr/local/insa/bin:/usr/local/insa/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/snap/bin:/opt/dell/srvadmin/bin"/>
+          <item stringID="value" value="/usr/local/insa/Xilinx.ISE/13.4/ISE_DS/ISE//bin/lin64:/usr/local/insa/shared/opam/system/bin:/usr/local/insa/lustre-v4-III-dc-linux64/bin:/usr/local/insa/arm-ada/compilateur/gcc-arm-none-eabi/bin:/usr/local/insa/anaconda/bin:/usr/local/insa/bin:/usr/local/insa/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/local/insa/tina/bin:/snap/bin"/>
         </row>
         <row stringID="row" value="3">
           <item stringID="variable" value="XILINX"/>
@@ -31,17 +31,13 @@
         <item stringID="User_EnvOsname" value="Ubuntu"/>
         <item stringID="User_EnvOsrelease" value="Ubuntu 18.04.5 LTS"/>
       </item>
-      <item stringID="User_EnvHost" value="srv-tp05"/>
+      <item stringID="User_EnvHost" value="insa-20427"/>
       <table stringID="User_EnvCpu">
         <column stringID="arch"/>
         <column stringID="speed"/>
         <row stringID="row" value="0">
-          <item stringID="arch" value="Intel(R) Xeon(R) Silver 4216 CPU @ 2.10GHz"/>
-          <item stringID="speed" value="801.375 MHz"/>
-        </row>
-        <row stringID="row" value="1">
-          <item stringID="arch" value="Intel(R) Xeon(R) Silver 4216 CPU @ 2.10GHz"/>
-          <item stringID="speed" value="957.752 MHz"/>
+          <item stringID="arch" value="Intel(R) Core(TM) i7-7700 CPU @ 3.60GHz"/>
+          <item stringID="speed" value="4008.265 MHz"/>
         </row>
       </table>
     </section>
@@ -62,29 +58,34 @@
         <item dataType="int" stringID="NGDBUILD_NUM_INFOS" value="0"/>
       </section>
       <section stringID="NGDBUILD_PRE_UNISIM_SUMMARY">
-        <item dataType="int" stringID="NGDBUILD_NUM_AND2" value="45"/>
-        <item dataType="int" stringID="NGDBUILD_NUM_AND3" value="5"/>
-        <item dataType="int" stringID="NGDBUILD_NUM_AND4" value="1"/>
-        <item dataType="int" stringID="NGDBUILD_NUM_FD" value="22"/>
+        <item dataType="int" stringID="NGDBUILD_NUM_AND2" value="41"/>
+        <item dataType="int" stringID="NGDBUILD_NUM_AND3" value="7"/>
+        <item dataType="int" stringID="NGDBUILD_NUM_AND4" value="2"/>
+        <item dataType="int" stringID="NGDBUILD_NUM_AND5" value="2"/>
+        <item dataType="int" stringID="NGDBUILD_NUM_FD" value="18"/>
+        <item dataType="int" stringID="NGDBUILD_NUM_FDCE" value="6"/>
         <item dataType="int" stringID="NGDBUILD_NUM_GND" value="1"/>
         <item dataType="int" stringID="NGDBUILD_NUM_IBUF" value="5"/>
-        <item dataType="int" stringID="NGDBUILD_NUM_INV" value="41"/>
+        <item dataType="int" stringID="NGDBUILD_NUM_INV" value="55"/>
         <item dataType="int" stringID="NGDBUILD_NUM_OBUF" value="6"/>
-        <item dataType="int" stringID="NGDBUILD_NUM_OR2" value="20"/>
+        <item dataType="int" stringID="NGDBUILD_NUM_OR2" value="32"/>
+        <item dataType="int" stringID="NGDBUILD_NUM_OR3" value="3"/>
         <item dataType="int" stringID="NGDBUILD_NUM_OR4" value="1"/>
-        <item dataType="int" stringID="NGDBUILD_NUM_XOR2" value="11"/>
+        <item dataType="int" stringID="NGDBUILD_NUM_XOR2" value="5"/>
       </section>
       <section stringID="NGDBUILD_POST_UNISIM_SUMMARY">
-        <item dataType="int" stringID="NGDBUILD_NUM_AND2" value="45"/>
-        <item dataType="int" stringID="NGDBUILD_NUM_AND3" value="5"/>
-        <item dataType="int" stringID="NGDBUILD_NUM_AND4" value="1"/>
-        <item dataType="int" stringID="NGDBUILD_NUM_GND" value="23"/>
+        <item dataType="int" stringID="NGDBUILD_NUM_AND2" value="41"/>
+        <item dataType="int" stringID="NGDBUILD_NUM_AND3" value="7"/>
+        <item dataType="int" stringID="NGDBUILD_NUM_AND4" value="2"/>
+        <item dataType="int" stringID="NGDBUILD_NUM_AND5" value="2"/>
+        <item dataType="int" stringID="NGDBUILD_NUM_GND" value="19"/>
         <item dataType="int" stringID="NGDBUILD_NUM_IBUF" value="5"/>
-        <item dataType="int" stringID="NGDBUILD_NUM_INV" value="41"/>
+        <item dataType="int" stringID="NGDBUILD_NUM_INV" value="55"/>
         <item dataType="int" stringID="NGDBUILD_NUM_OBUF" value="6"/>
-        <item dataType="int" stringID="NGDBUILD_NUM_OR2" value="20"/>
+        <item dataType="int" stringID="NGDBUILD_NUM_OR2" value="32"/>
+        <item dataType="int" stringID="NGDBUILD_NUM_OR3" value="3"/>
         <item dataType="int" stringID="NGDBUILD_NUM_OR4" value="1"/>
-        <item dataType="int" stringID="NGDBUILD_NUM_XOR2" value="11"/>
+        <item dataType="int" stringID="NGDBUILD_NUM_XOR2" value="5"/>
       </section>
       <section stringID="NGDBUILD_CORE_GENERATION_SUMMARY">
         <section stringID="NGDBUILD_CORE_INSTANCES"/>

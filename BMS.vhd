@@ -116,6 +116,19 @@ end if;
 
 end process;
 
+--------------------------------
+Reset_priority : process(CLK)
+begin 
+	if (CLK='1' and CLK'Event)then
+		if (command=OUVERT and compteur/="111") then 
+			busy<='1'; -- on ne peut pas changer de configuration tant que les interrupteurs ne sont pas tous ouverts
+		else 
+			busy<='0'; 
+		end if;
+	end if ; 
+end process Reset_priority ;
+
+-------------------------------------
 -- Machine à état de la configuaration des interrupteurs 
 -- Synchrone avec la nouvelle clock CLK_ter
 
@@ -164,18 +177,19 @@ if (CLK_bis='1' and CLK_bis'Event)then
 end if; 
 end process Config_mode ;
 
+
 Config_switch : process(CLK_ter)
 begin
 
-if (command=OUVERT and compteur/="111") then 
-	busy<='1'; -- on ne peut pas changer de configuration tant que les interrupteurs ne sont pas tous ouverts
-else 
-	null; 
-end if;
+--if (command=OUVERT and compteur/="111") then 
+	--busy<='1'; -- on ne peut pas changer de configuration tant que les interrupteurs ne sont pas tous ouverts
+--else 
+	--busy<='0'; 
+--end if;
 
 
 
-
+	
 if (CLK_ter='1' and CLK_ter'Event)then
 
 	if (newcommand='1') then 
@@ -201,7 +215,7 @@ if (CLK_ter='1' and CLK_ter'Event)then
 									K2<='0';
 									ACK<='1'; 
 									compteur<="111"; -- valeur du compteur quand attente du nouvelle commande, permet de faire les configs qu'une seule fois 
-									busy<='0';
+									--busy<='0';
 							ELSE 
 									ACK<='0';
 								

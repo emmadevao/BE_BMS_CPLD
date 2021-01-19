@@ -71,12 +71,12 @@
       <obj_property name="ElementShortName">compteur[2:0]</obj_property>
       <obj_property name="ObjectShortName">compteur[2:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/testcpt/uut/newcommand" type="logic" db_ref_id="1">
-      <obj_property name="ElementShortName">newcommand</obj_property>
-      <obj_property name="ObjectShortName">newcommand</obj_property>
-   </wvobject>
    <wvobject fp_name="/testcpt/uut/busy" type="logic" db_ref_id="1">
       <obj_property name="ElementShortName">busy</obj_property>
       <obj_property name="ObjectShortName">busy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testcpt/uut/newcommand" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">newcommand</obj_property>
+      <obj_property name="ObjectShortName">newcommand</obj_property>
    </wvobject>
 </wave_config>

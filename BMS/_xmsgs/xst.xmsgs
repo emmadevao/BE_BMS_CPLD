@@ -5,14 +5,5 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="info" file="Xst" num="2679" delta="old" >Register &lt;<arg fmt="%s" index="1">K5</arg>&gt; in unit &lt;<arg fmt="%s" index="2">BMS</arg>&gt; has a constant value of <arg fmt="%s" index="3">0</arg> during circuit operation. The register is replaced by logic.
-</msg>
-
-<msg type="info" file="Xst" num="1799" delta="old" >State <arg fmt="%s" index="1">batt1</arg> is never reached in FSM &lt;<arg fmt="%s" index="2">command</arg>&gt;.
-</msg>
-
-<msg type="info" file="Xst" num="1799" delta="old" >State <arg fmt="%s" index="1">batt2</arg> is never reached in FSM &lt;<arg fmt="%s" index="2">command</arg>&gt;.
-</msg>
-
 </messages>
 

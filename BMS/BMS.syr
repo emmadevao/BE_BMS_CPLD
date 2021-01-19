@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total CPU time to Xst completion: 0.03 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total CPU time to Xst completion: 0.03 secs
  
 --> 
 Reading design: BMS.prj
@@ -79,20 +79,20 @@ wysiwyg                            : NO
 *                          HDL Compilation                              *
 =========================================================================
 Compiling vhdl file "/home/devaud/Bureau/BMS_5ESPE/BMS.vhd" in Library work.
-Entity <bms> compiled.
-Entity <bms> (Architecture <statemachine>) compiled.
+Entity <BMS> compiled.
+Entity <BMS> (Architecture <StateMachine>) compiled.
 
 =========================================================================
 *                     Design Hierarchy Analysis                         *
 =========================================================================
-Analyzing hierarchy for entity <BMS> in library <work> (architecture <statemachine>).
+Analyzing hierarchy for entity <BMS> in library <work> (architecture <StateMachine>).
 
 
 =========================================================================
 *                            HDL Analysis                               *
 =========================================================================
-Analyzing Entity <BMS> in library <work> (Architecture <statemachine>).
-INFO:Xst:2679 - Register <K5> in unit <BMS> has a constant value of 0 during circuit operation. The register is replaced by logic.
+Analyzing Entity <BMS> in library <work> (Architecture <StateMachine>).
+    Set property "ENUM_ENCODING = 000 001 010 100 101" for signal <command>.
 Entity <BMS> analyzed. Unit <BMS> generated.
 
 
@@ -104,8 +104,6 @@ Performing bidirectional port resolution...
 
 Synthesizing Unit <BMS>.
     Related source file is "/home/devaud/Bureau/BMS_5ESPE/BMS.vhd".
-INFO:Xst:1799 - State batt1 is never reached in FSM <command>.
-INFO:Xst:1799 - State batt2 is never reached in FSM <command>.
     Found finite state machine <FSM_0> for signal <compteur>.
     -----------------------------------------------------------------------
     | States             | 5                                              |
@@ -122,10 +120,10 @@ INFO:Xst:1799 - State batt2 is never reached in FSM <command>.
     -----------------------------------------------------------------------
     Found finite state machine <FSM_1> for signal <command>.
     -----------------------------------------------------------------------
-    | States             | 3                                              |
-    | Transitions        | 7                                              |
-    | Inputs             | 3                                              |
-    | Outputs            | 3                                              |
+    | States             | 5                                              |
+    | Transitions        | 10                                             |
+    | Inputs             | 4                                              |
+    | Outputs            | 5                                              |
     | Clock              | CLK_bis                   (rising_edge)        |
     | Reset              | RESET                     (positive)           |
     | Reset type         | synchronous                                    |
@@ -138,7 +136,9 @@ INFO:Xst:1799 - State batt2 is never reached in FSM <command>.
     Found 1-bit register for signal <K2>.
     Found 1-bit register for signal <K3>.
     Found 1-bit register for signal <K4>.
+    Found 1-bit register for signal <K5>.
     Found 1-bit register for signal <ACK>.
+    Found 1-bit register for signal <busy>.
     Found 1-bit register for signal <CLK_bis>.
     Found 1-bit register for signal <CLK_ter>.
     Found 1-bit register for signal <newcommand>.
@@ -158,8 +158,8 @@ Macro Statistics
 # Counters                                             : 2
  2-bit up counter                                      : 1
  5-bit up counter                                      : 1
-# Registers                                            : 8
- 1-bit register                                        : 8
+# Registers                                            : 10
+ 1-bit register                                        : 10
 
 =========================================================================
 
@@ -168,15 +168,15 @@ Macro Statistics
 =========================================================================
 
 Analyzing FSM <FSM_1> for best encoding.
-Optimizing FSM <command/FSM> on signal <command[1:2]> with sequential encoding.
+Optimizing FSM <command/FSM> on signal <command[1:3]> with sequential encoding.
 ----------------------
  State    | Encoding
 ----------------------
- ouvert   | 00
- parallel | 01
- series   | 10
- batt1    | unreached
- batt2    | unreached
+ ouvert   | 000
+ parallel | 001
+ series   | 010
+ batt1    | 011
+ batt2    | 100
 ----------------------
 Analyzing FSM <FSM_0> for best encoding.
 Optimizing FSM <compteur/FSM> on signal <compteur[1:5]> with one-hot encoding.
@@ -208,19 +208,21 @@ Macro Statistics
 =========================================================================
 
 Optimizing unit <BMS> ...
-  implementation constraint: INIT=r	 : command_FSM_FFd1
-  implementation constraint: INIT=r	 : K2
   implementation constraint: INIT=r	 : K3
-  implementation constraint: INIT=r	 : compteur_FSM_FFd3
+  implementation constraint: INIT=r	 : compteur_FSM_FFd2
   implementation constraint: INIT=r	 : K4
-  implementation constraint: INIT=r	 : ACK
+  implementation constraint: INIT=r	 : K5
+  implementation constraint: INIT=r	 : command_FSM_FFd1
+  implementation constraint: INIT=r	 : compteur_FSM_FFd3
   implementation constraint: INIT=s	 : compteur_FSM_FFd5
+  implementation constraint: INIT=r	 : ACK
   implementation constraint: INIT=r	 : CLK_ter
   implementation constraint: INIT=r	 : newcommand
   implementation constraint: INIT=r	 : compteur_FSM_FFd4
+  implementation constraint: INIT=r	 : busy
   implementation constraint: INIT=r	 : CLK_bis
   implementation constraint: INIT=r	 : Qdiv2_1
-  implementation constraint: INIT=r	 : compteur_FSM_FFd2
+  implementation constraint: INIT=r	 : command_FSM_FFd3
   implementation constraint: INIT=r	 : Qdiv2_0
   implementation constraint: INIT=r	 : Qdiv_4
   implementation constraint: INIT=r	 : command_FSM_FFd2
@@ -229,6 +231,7 @@ Optimizing unit <BMS> ...
   implementation constraint: INIT=r	 : Qdiv_2
   implementation constraint: INIT=r	 : Qdiv_3
   implementation constraint: INIT=r	 : K1
+  implementation constraint: INIT=r	 : K2
 
 =========================================================================
 *                           Partition Report                            *
@@ -260,17 +263,19 @@ Design Statistics
 # IOs                              : 11
 
 Cell Usage :
-# BELS                             : 108
+# BELS                             : 149
 #      AND2                        : 41
-#      AND3                        : 3
-#      AND4                        : 1
+#      AND3                        : 7
+#      AND4                        : 2
+#      AND5                        : 2
 #      GND                         : 1
-#      INV                         : 36
-#      OR2                         : 18
+#      INV                         : 55
+#      OR2                         : 32
 #      OR3                         : 3
+#      OR4                         : 1
 #      XOR2                        : 5
-# FlipFlops/Latches                : 21
-#      FD                          : 15
+# FlipFlops/Latches                : 24
+#      FD                          : 18
 #      FDCE                        : 6
 # IO Buffers                       : 11
 #      IBUF                        : 5
@@ -279,14 +284,14 @@ Cell Usage :
 
 
 Total REAL time to Xst completion: 3.00 secs
-Total CPU time to Xst completion: 2.96 secs
+Total CPU time to Xst completion: 2.27 secs
  
 --> 
 
 
-Total memory usage is 528180 kilobytes
+Total memory usage is 525668 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    0 (   0 filtered)
-Number of infos    :    3 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
 
