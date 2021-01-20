@@ -36,3 +36,23 @@ cpldfit -intstyle ise -p xc9572xl-5-VQ44 -ofmt vhdl -optimize speed -htmlrpt -lo
 XSLTProcess BMS_build.xml 
 tsim -intstyle ise BMS BMS.nga 
 hprep6 -s IEEE1149 -n BMS -i BMS 
+xst -intstyle ise -ifn "/home/devaud/Bureau/BMS_5ESPE/BMS/BMS.xst" -ofn "/home/devaud/Bureau/BMS_5ESPE/BMS/BMS.syr" 
+ngdbuild -intstyle ise -dd _ngo -uc /home/devaud/Bureau/BMS_5ESPE/BMS.ucf -p xc9572xl-VQ44-5 BMS.ngc BMS.ngd  
+cpldfit -intstyle ise -p xc9572xl-5-VQ44 -ofmt vhdl -optimize speed -htmlrpt -loc on -slew fast -init low -inputs 54 -pterms 25 -unused float -power std -terminate keeper BMS.ngd 
+XSLTProcess BMS_build.xml 
+tsim -intstyle ise BMS BMS.nga 
+hprep6 -s IEEE1149 -n BMS -i BMS 
+xst -intstyle ise -ifn "/home/devaud/Bureau/BMS_5ESPE/BMS/BMS.xst" -ofn "/home/devaud/Bureau/BMS_5ESPE/BMS/BMS.syr" 
+xst -intstyle ise -ifn "/home/devaud/Bureau/BMS_5ESPE/BMS/BMS.xst" -ofn "/home/devaud/Bureau/BMS_5ESPE/BMS/BMS.syr" 
+xst -intstyle ise -ifn "/home/devaud/Bureau/BMS_5ESPE/BMS/BMS.xst" -ofn "/home/devaud/Bureau/BMS_5ESPE/BMS/BMS.syr" 
+ngdbuild -intstyle ise -dd _ngo -uc /home/devaud/Bureau/BMS_5ESPE/BMS.ucf -p xc9572xl-VQ44-5 BMS.ngc BMS.ngd  
+cpldfit -intstyle ise -p xc9572xl-5-VQ44 -ofmt vhdl -optimize speed -htmlrpt -loc on -slew fast -init low -inputs 54 -pterms 25 -unused float -power std -terminate keeper BMS.ngd 
+XSLTProcess BMS_build.xml 
+tsim -intstyle ise BMS BMS.nga 
+hprep6 -s IEEE1149 -n BMS -i BMS 
+xst -intstyle ise -ifn "/home/devaud/Bureau/BMS_5ESPE/BMS/BMS.xst" -ofn "/home/devaud/Bureau/BMS_5ESPE/BMS/BMS.syr" 
+ngdbuild -intstyle ise -dd _ngo -uc /home/devaud/Bureau/BMS_5ESPE/BMS.ucf -p xc9572xl-VQ44-5 BMS.ngc BMS.ngd  
+cpldfit -intstyle ise -p xc9572xl-5-VQ44 -ofmt vhdl -optimize speed -htmlrpt -loc on -slew fast -init low -inputs 54 -pterms 25 -unused float -power std -terminate keeper BMS.ngd 
+XSLTProcess BMS_build.xml 
+tsim -intstyle ise BMS BMS.nga 
+hprep6 -s IEEE1149 -n BMS -i BMS 

@@ -110,10 +110,11 @@ BEGIN
    begin		
 	
 -- Simulation n°1 : test du reset okay sauf que la commande est initialisée à ouvert
+	-- Ne pas oublier, il faut initialiser dans BMS.vhd les interrupteurs à '1' 
 	--RESET<= '1' after 1ms,'0' after 2 ms;
         
 		
--- Simulation n° 2 : Mode PARALLEL puis RESET OKAY
+-- Simulation n° 2 : Mode PARALLEL puis RESET 
 		--RESET<= '1' after 0ms,'0' after 0.25 ms, '1' after 8ms , '0' after 8.5ms ; 
 		--MODE_0<='0' after 4 ms;--, '1' after 10ms; 
 		--MODE_1<='0' after 4 ms ;--, '1' after 10ms ; 
@@ -132,10 +133,10 @@ BEGIN
 		--LOAD<='1' after  4.5 ms,'0' after  5.5ms , '1' after 13ms , '0' after 14ms ;	
 
 -- Simulation n° 5 : Mode PARALLEL puis RESET puis BATT2
-		RESET<= '1' after 0ms,'0' after 0.25 ms, '1' after 8ms , '0' after 8.5ms ; 
-		MODE_0<='0' after 4 ms , '0' after 11ms , '0' after 15 ms; 
-		MODE_1<='0' after 4 ms , '1' after 11ms, '0' after 15 ms; 
-		LOAD<='1' after  4.5 ms,'0' after  5.5ms , '1' after 13ms , '0' after 14ms ;
+		--RESET<= '1' after 0ms,'0' after 0.25 ms, '1' after 8ms , '0' after 8.5ms ; 
+		--MODE_0<='0' after 4 ms , '0' after 11ms , '0' after 15 ms; 
+		--MODE_1<='0' after 4 ms , '1' after 11ms, '0' after 15 ms; 
+		--LOAD<='1' after  4.5 ms,'0' after  5.5ms , '1' after 13ms , '0' after 14ms ;
 		
 -- Simulation n° 6 : Test que l'on reste en RESET tant que la configuration n'est pas terminée
 		--RESET<= '1' after 0ms,'0' after 0.25 ms ;

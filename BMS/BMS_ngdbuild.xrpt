@@ -5,7 +5,7 @@
     The structure and the elements are likely to change over the next few releases.
     This means code written to parse this file will need to be revisited each subsequent release.-->
 
-  <application stringID="NgdBuild" timeStamp="Tue Jan 19 21:45:11 2021">
+  <application stringID="NgdBuild" timeStamp="Wed Jan 20 15:39:19 2021">
     <section stringID="User_Env">
       <table stringID="User_EnvVar">
         <column stringID="variable"/>
@@ -20,7 +20,7 @@
         </row>
         <row stringID="row" value="2">
           <item stringID="variable" value="PATH"/>
-          <item stringID="value" value="/usr/local/insa/Xilinx.ISE/13.4/ISE_DS/ISE//bin/lin64:/usr/local/insa/shared/opam/system/bin:/usr/local/insa/lustre-v4-III-dc-linux64/bin:/usr/local/insa/arm-ada/compilateur/gcc-arm-none-eabi/bin:/usr/local/insa/anaconda/bin:/usr/local/insa/bin:/usr/local/insa/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/snap/bin:/opt/dell/srvadmin/bin"/>
+          <item stringID="value" value="/usr/local/insa/Xilinx.ISE/13.4/ISE_DS/ISE//bin/lin64:/usr/local/insa/shared/opam/system/bin:/usr/local/insa/lustre-v4-III-dc-linux64/bin:/usr/local/insa/arm-ada/compilateur/gcc-arm-none-eabi/bin:/usr/local/insa/anaconda/bin:/usr/local/insa/bin:/usr/local/insa/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/local/insa/tina/bin:/snap/bin"/>
         </row>
         <row stringID="row" value="3">
           <item stringID="variable" value="XILINX"/>
@@ -31,17 +31,13 @@
         <item stringID="User_EnvOsname" value="Ubuntu"/>
         <item stringID="User_EnvOsrelease" value="Ubuntu 18.04.5 LTS"/>
       </item>
-      <item stringID="User_EnvHost" value="srv-tp06"/>
+      <item stringID="User_EnvHost" value="insa-20427"/>
       <table stringID="User_EnvCpu">
         <column stringID="arch"/>
         <column stringID="speed"/>
         <row stringID="row" value="0">
-          <item stringID="arch" value="Intel(R) Xeon(R) Silver 4216 CPU @ 2.10GHz"/>
-          <item stringID="speed" value="800.057 MHz"/>
-        </row>
-        <row stringID="row" value="1">
-          <item stringID="arch" value="Intel(R) Xeon(R) Silver 4216 CPU @ 2.10GHz"/>
-          <item stringID="speed" value="800.191 MHz"/>
+          <item stringID="arch" value="Intel(R) Core(TM) i7-7700 CPU @ 3.60GHz"/>
+          <item stringID="speed" value="1602.042 MHz"/>
         </row>
       </table>
     </section>

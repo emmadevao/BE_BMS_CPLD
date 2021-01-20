@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.05 secs
+Total CPU time to Xst completion: 0.07 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.05 secs
+Total CPU time to Xst completion: 0.07 secs
  
 --> 
 Reading design: BMS.prj
@@ -79,7 +79,8 @@ wysiwyg                            : NO
 *                          HDL Compilation                              *
 =========================================================================
 Compiling vhdl file "/home/devaud/Bureau/BMS_5ESPE/BMS.vhd" in Library work.
-Architecture statemachine of Entity bms is up to date.
+Entity <bms> compiled.
+Entity <bms> (Architecture <statemachine>) compiled.
 
 =========================================================================
 *                     Design Hierarchy Analysis                         *
@@ -294,13 +295,13 @@ Cell Usage :
 =========================================================================
 
 
-Total REAL time to Xst completion: 4.00 secs
-Total CPU time to Xst completion: 3.24 secs
+Total REAL time to Xst completion: 2.00 secs
+Total CPU time to Xst completion: 2.33 secs
  
 --> 
 
 
-Total memory usage is 527780 kilobytes
+Total memory usage is 527836 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    0 (   0 filtered)

@@ -57,6 +57,8 @@ architecture StateMachine of BMS is
 signal CLK_bis : STD_LOGIC := '0';
 signal CLK_ter : STD_LOGIC := '0';
 
+
+--signal Qdiv : STD_LOGIC_VECTOR ( 12 downto 0):="0000000000000";
 signal Qdiv : STD_LOGIC_VECTOR ( 15 downto 0):="0000000000000000";
 --signal Qdiv : STD_LOGIC_VECTOR ( 4 downto 0):="00000";  -- à décommenter pour les simulations 
 signal Qdiv2 : STD_LOGIC_VECTOR ( 1 downto 0):="00";
@@ -88,9 +90,12 @@ begin
 
 if (CLK='1' and CLK'Event)then 
 
-	if Qdiv="110000110101000"then -- valeur calculée pour tests sur carte d'essai clk CPDL = 50 MHz
+	if Qdiv="1100001101010000"then -- valeur calculée pour tests sur carte d'essai clk CPDL = 50 MHz
+	--if Qdiv="1001110001000" then
 		CLK_bis<='1'; 
 		Qdiv<="0000000000000000";
+		--Qdiv<="0000000000000";
+
 		
 	else 
 		Qdiv <=Qdiv+1;
