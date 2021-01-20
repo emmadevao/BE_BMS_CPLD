@@ -84,13 +84,13 @@ signal busy : STD_LOGIC := '0';
 
 begin
 
---------- Premier process : prescaler pour créer une clock à 0.5 ms (CLK à 20ns)
+--------- Premier process : prescaler pour créer une clock à 5 ms (CLK à 20ns)
 process(CLK)
 begin 
 
 if (CLK='1' and CLK'Event)then 
 
-	if Qdiv="1100001101010000"then -- valeur calculée pour tests sur carte d'essai clk CPDL = 50 MHz
+	if Qdiv="110000110101000"then -- valeur calculée pour tests sur carte d'essai clk CPDL = 50 MHz
 	--if Qdiv="1001110001000" then
 		CLK_bis<='1'; 
 		Qdiv<="0000000000000000";
@@ -105,7 +105,7 @@ end if;
 
 end process; 
 
----------- Deuxième process : prescaler pour créer une clock à 1ms (% de la première CLK_bis qui est à 0,5ms)
+---------- Deuxième process : prescaler pour créer une clock à 10ms (% de la première CLK_bis qui est à 5ms)
 process(CLK_bis)
 begin 
 
@@ -124,7 +124,7 @@ end if;
 
 end process;
 
----------- Troisième process : Permey d'assurer la priorité du reset, rien ne peut se passer tant que la config du reset n'est pas terminée
+---------- Troisième process : Permet d'assurer la priorité du reset, rien ne peut se passer tant que la config du reset n'est pas terminée
 Reset_priority : process(CLK)
 begin 
 	if (CLK='1' and CLK'Event)then

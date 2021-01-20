@@ -56,3 +56,4 @@ cpldfit -intstyle ise -p xc9572xl-5-VQ44 -ofmt vhdl -optimize speed -htmlrpt -lo
 XSLTProcess BMS_build.xml 
 tsim -intstyle ise BMS BMS.nga 
 hprep6 -s IEEE1149 -n BMS -i BMS 
+xst -intstyle ise -ifn "/home/devaud/Bureau/BMS_5ESPE/BMS/BMS.xst" -ofn "/home/devaud/Bureau/BMS_5ESPE/BMS/BMS.syr" 
