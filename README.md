@@ -3,7 +3,7 @@
 ## Multidisciplinary project | 5 ESPE | INSA | 2020_2021
 
 
-#### To have more information about the context please read : Scientific_Report.pf
+#### To have more information about the context please read : Scientific_Report.pdf
 
 ---
 
