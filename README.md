@@ -3,7 +3,7 @@
 ## Multidisciplinary project | 5 ESPE | INSA | 2020_2021
 
 
-#### To have more information about the context please read : [Scientifique report](https://github.com/emmadevao/BE_BMS_CPLD/blob/master/Scientific_Report.pdf) [Annexe](https://github.com/emmadevao/BE_BMS_CPLD/blob/master/Annexe_ProjetInter_Report.pdf)
+#### To have more information about the context please read : [Scientifique report](https://github.com/emmadevao/BE_BMS_CPLD/blob/master/Scientific_Report.pdf) and [Annexe](https://github.com/emmadevao/BE_BMS_CPLD/blob/master/Annexe_ProjetInter_Report.pdf)
 
 ---
 
